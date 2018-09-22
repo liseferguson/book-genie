@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: fX9GGmFqFp56q1jQ0bhsRt8bLIlsan0iI0tJxWS80uFgfjYg+hSl1zc3evg8yRts1nMP6vdX0NWHgIb7qVQ//dit2L5q7sfBYux0gGAFFYHZBwTt9png6MW8KVMNwIJoPqLfu/GMU35zXapQkd1kR2v9s43nlPdgElHziksPFyMJR1fFcx25rvzwGTdPUaTPZ+ngv5VWim1n21Bi5F9DU3bmInoDyDHcNTndR+Ulx5W/+FJG/Tk8RkC3aaLvCqmvZeV346KV2fnECYmHM6fLMwRaVyBvHffugBj31pYy/PpbNquqcOLudTZQtlIcWHVms8DrkLRehdfjOEISuO5YnsW+0VPSH3e+m8qeQETBS5EYpeLMMqoxw+7scBM12IUw8ub5TfbFHOpfDPDLe5XSiA593a9QAk8nwBy1mIYCAac0D/WeScHbrwR5dn73wbXrbJmDWreoZJEmwzbh6N3K5HWtjGYqvsuU0a2yUrI7I+4vjFRC7EeFTgQov7/YLUyce9iqpe/0Lbui1Eb4972Rl3bIWB5tT/ZpOT9NnlQnfVzGxNLYUuJ3gfQI61RUUSeu4cYFUdPOs1qoHxZaaci+iGoFkL3ozDybjS33yjc/sguXpuXH/Rhqyvm9lfTLoz7kyry2diaBJcIEtbYW7mAB3IuNY+vw5jt3hwhuuQJR9Bg=
+  app: warm-lowlands-41210
+  on:
+    repo: liseferguson/book-genie
