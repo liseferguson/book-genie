@@ -1,1 +1,72 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <!-- html below sets content to adjest to different devices' widths accordingly -->
+  <meta name="viewport" content="width=device-width">
+    <!-- Accessability feature -->
+  <meta name="description" content="An app that allows neighbors to borrow books from one another">
+    <!-- normalization -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+    <!-- link to jquery -->
+  <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+  <link href="index.css" rel="stylesheet" type="text/css"/>
+	<title>Book Genie</title>
+</head>
+<body>
+	<main role="main" aria-live="assertive">
+	  <header class="header">
+      	<section class="titlePage">
+          <h1 class="App-title">Book Genie</h1>
+          <div class="header-icons">
+          <img src="https://bit.ly/2xxIVVG" alt="book icon">
+        </section>
+      </header>
+      <div class="signInForm">
+        <h2>A neighborhood book trade cooperative. Borrow books from neighbors, and loan out or gift your own.</h2>
+          <form action="#" class="userCredentials" role="form">
+            <label for="email">Email Address</label>
+              <input type="email" class="email" required>
+            <label for="password">Password</label>
+              <input type="password" name="psw" required>
+            <button type="submit" role="button" class="signInButton">Go!</button>
+            <button type="button" role="button" class="signUpButton">Or, sign up here!</button>
+          </form>
+      </div>
+      <div class="signUpForm">
+        <h2>Sign up to join the Book Genie community</h2>
+          <form action="#" class="userInfo" role="form">
+            <label for="firstName">First Name</label>
+              <input type="text" class="firstName" required>
+            <label for="lastName">Last Name</label>
+              <input type="text" class="lastName" required>
+            <label for="email">Email Address</label>
+              <input type="email" class="email" required>
+            <label for="zipCode">Zip Code</label>
+              <input type="text" class="zipCode" pattern="[0-9]{5}" required>
+            <label for="password">Password</label>
+              <input type="password" name="psw" required>
+            <button type="submit" role="button">Sign Up!</button>
+          </form>
+      </div>
+    <footer>
+    	<div class="credits">
+    	 <p class="credits-icons">Book icons by
+         	<a href="https://www.flaticon.com/authors/freepik" target="_blank" class="credits">Freepik</a>
+         	House icons by
+         	<a href="https://www.flaticon.com/authors/icomoon" target="_blank" class="credits">Icomoon</a>
+         	and
+         	<a href="https://www.flaticon.com/authors/anton-saputro" target="_blank" class="credits">Anton Saputro</a>
+           from
+           <a href="https://www.flaticon.com" target="_blank" class="credits">www.flaticon.com</a>
+         </p>
+    	</div>
+	</footer>
+
+	</main>
+	<script type="text/javascript" scr="main.js"></script>
+</body>
+</html>

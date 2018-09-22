@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 50px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-family: 'Sunflower', sans-serif;
+  display: block;
+  text-align: center;
+  
+}
+
+header {
+  border: 1px solid black;
+}
+
+.signInForm {
+  border: 2px solid red;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.signUpForm {
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
