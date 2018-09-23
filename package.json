@@ -14,7 +14,7 @@
     "chai-http": "^4.2.0"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --exit",
     "start": "node server.js"
   },
   "author": "",
