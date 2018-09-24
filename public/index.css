@@ -23,7 +23,8 @@ header {
   text-align: center;
 }
 
-.signUpForm {
+/* all divs below have no display so are hidden until triggered at appropraite time in js file */ 
+.signUpForm, .welcomePage, .searchResultsPag, .browseAllLibraries {
   display: none;
   margin-left: auto;
   margin-right: auto;

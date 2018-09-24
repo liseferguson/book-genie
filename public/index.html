@@ -16,8 +16,10 @@
   <link href="index.css" rel="stylesheet" type="text/css"/>
 	<title>Book Genie</title>
 </head>
+
 <body>
 	<main role="main" aria-live="assertive">
+
 	  <header class="header">
       	<section class="titlePage">
           <h1 class="App-title">Book Genie</h1>
@@ -25,8 +27,9 @@
           <img src="https://bit.ly/2xxIVVG" alt="book icon">
         </section>
       </header>
+
       <div class="signInForm">
-        <h2>A neighborhood book trade cooperative. Borrow books from neighbors, and loan out or gift your own.</h2>
+        <h1>A neighborhood book trade cooperative. Borrow books from neighbors, and loan out or gift your own.</h1>
           <form action="#" class="userCredentials" role="form">
             <label for="email">Email Address</label>
               <input type="email" class="email" required>
@@ -36,8 +39,9 @@
             <button type="button" role="button" class="signUpButton">Or, sign up here!</button>
           </form>
       </div>
+
       <div class="signUpForm">
-        <h2>Sign up to join the Book Genie community</h2>
+        <h1>Sign up to join the Book Genie community</h1>
           <form action="#" class="userInfo" role="form">
             <label for="firstName">First Name</label>
               <input type="text" class="firstName" required>
@@ -52,6 +56,31 @@
             <button type="submit" role="button">Sign Up!</button>
           </form>
       </div>
+
+      <div class="welcomePage">
+        <h1>Welcome back, userName! What are you looking for today?</h1>
+          <form action="#" class="searchForm" role="form">
+            <label for="searchForm">Enter a title</label>
+              <input type="text" class="searchTerm" required>
+            <button type="submit" role="button">Go!</button>
+      </div>
+
+      <div class="searchResultsPage">
+        <h1>resultsNumber of your neighbors have searchTerm in their library!</h1>
+        <div class="searchResultsMap"></div>
+        <h2>Or, try another search</h2>
+          <form action="#" class="searchForm" role="form">
+            <label for="searchForm">Enter a title</label>
+              <input type="text" class="searchTerm" required>
+            <button type="submit" role="button">Go!</button>
+          </form>
+      </div>
+
+      <div class="browseAllLibraries">
+        <h1>Neighbor Libraries</h1>
+        <div class ="neighborInfoCards"></div>
+      </div>  
+
     <footer>
     	<div class="credits">
     	 <p class="credits-icons">Book icons by

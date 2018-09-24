@@ -1,4 +1,4 @@
-//this feature will display a list of all user libraries 
+//this feature will display a list of all user libraries for user to scroll through
 
 let MOCK_LIBRARIES = {
     "libraries": [
