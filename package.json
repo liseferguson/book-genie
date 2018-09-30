@@ -17,6 +17,6 @@
     "test": "mocha --exit",
     "start": "node server.js"
   },
-  "author": "",
+  "author": "lise ferguson",
   "license": "ISC"
 }
