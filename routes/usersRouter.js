@@ -82,23 +82,9 @@ router.post("/", jsonParser, (req, res) => {
 
 //lets user add books to their library. Need to use id also to attach book to specific user library?
 router.put('/:id', jsonParser, (req, res) => {
-	if (req.body.library === undefined) {
-   	 	return res.status(422).json({
-      		code: 422,
-      		reason: 'ValidationError',
-      		message: 'Please enter a title',
-    	});
-  	}
-  	console.log("we don't suck!")
-	let updatedLibrary = {};
-	requiredFields.forEach(field => {
-		if(field in req.body){
-			updatedLibrary[field] = req.body[field];
-		}
-	})
-  	
-
-  console.log(`Adding title (${req.params.id}) to library`)
+	return res.status(204).json({});
+	//fill this code in with code that takes req, updates user by adding body, add title to user library, if sucessful return 204 otherwise error
+ /* console.log(`Adding title (${req.params.id}) to library`)
   User.library.update({
   	title: req.body.id
   })
@@ -109,6 +95,7 @@ router.put('/:id', jsonParser, (req, res) => {
         console.error(err);
         res.status(500).json({error: 'Something went wrong'});
       });
+  */
 });
 
 //for when user has posted a new item in their library
