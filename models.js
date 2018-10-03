@@ -23,13 +23,23 @@ const userSchema = mongoose.Schema({
 });
 
 //represents how the outside world sees our users
+//Note to self: make tests to make sure serialize is working properly
 userSchema.methods.serialize = function() {
 	console.log('made it to serialize');
   return {
     firstName: this.firstName,
     email: this.email,
-    city: this.city
-    //library: this.library
+    city: this.city,
+    library: this.library.map(
+        (book) => book.serialize()
+      )
+  };
+};
+
+bookSchema.methods.serialize = function() {
+  console.log('made it to book serialize');
+  return {
+    title: this.title
   };
 };
 
