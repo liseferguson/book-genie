@@ -91,7 +91,8 @@ router.post("/", jsonParser, (req, res) => {
     		password: req.body.password,
     		email: req.body.email,
     		city: req.body.city,
-    		zipcode: req.body.zipcode
+    		zipcode: req.body.zipcode,
+        library: req.body.library
     	})
     	 .then(item => {
     	 	res.status(201).json(item);

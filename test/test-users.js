@@ -25,19 +25,6 @@ function addUser(user){
 }
 
 describe('/users endpoints', function() {
-/*
-	const firstName = "Sally";
-	const lastName = "Student";
-	const password = "password";
-	const email = "testing@gmail.com";
-	const city = "Portland";
-	const zipcode = "97213";
-  const library ={
-    title:"Book1", 
-    title:"Book2", 
-    title:"Book3"
-    };
-    */
 
     let newUser = {
       firstName:"Sally",
@@ -45,7 +32,7 @@ describe('/users endpoints', function() {
       password:"password",
       email:"testing@gmail.com",
       city:"Portland",
-      zipcode:"97213",
+      zipcode:97213,
       library:[
       {title:"Book1"}, 
       {title:"Book2"}, 
@@ -59,7 +46,7 @@ describe('/users endpoints', function() {
       password:"password",
       email:"stupid@gmail.com",
       city:"Portland",
-      zipcode:"97219",
+      zipcode:97219,
       library:[
       {title:"Book9"}, 
       {title:"Book10"}, 
@@ -73,7 +60,7 @@ describe('/users endpoints', function() {
       password:"password",
       email:"stop@gmail.com",
       city:"Portland",
-      zipcode:"97219",
+      zipcode:97219,
       library:[
       {title:"Book6"}, 
       {title:"Book7"}, 
@@ -81,16 +68,17 @@ describe('/users endpoints', function() {
       ]
     };
 
+    
     afterEach(function() {
-      return tearDownDb();
+     
     });
 
     before(function() {
-      console.log("hi");
       return runServer(TEST_DATABASE_URL, PORT);
     });
 
     after(function() {
+      tearDownDb();
     	return closeServer();
     });
 
@@ -100,84 +88,122 @@ describe('/users endpoints', function() {
         return chai.request(app)
         .post('/users')
         .send(newUser)
-        .then(function(res) {
+        .then(function(res) {   
           expect(res).to.have.status(201);
           expect(res.body).to.be.an("object");
           expect(res.body).to.include.keys("firstName", "lastName", 'password', "email", "city", "zipcode");
           expect(res.body.email).to.equal(newUser.email);
-        });
       });
+      });
+
+      it('should create other user', function(){
+        return chai.request(app)
+        .post('/users')
+        .send(otherUser)
+        .then(function(res) {   
+          expect(res).to.have.status(201);
+          expect(res.body).to.be.an("object");
+          expect(res.body).to.include.keys("firstName", "lastName", 'password', "email", "city", "zipcode");
+          expect(res.body.email).to.equal(otherUser.email);
+      });
+      });
+
+      it('should create other other user', function(){
+        return chai.request(app)
+        .post('/users')
+        .send(otherOtherUser)
+        .then(function(res) {   
+          expect(res).to.have.status(201);
+          expect(res.body).to.be.an("object");
+          expect(res.body).to.include.keys("firstName", "lastName", 'password', "email", "city", "zipcode");
+          expect(res.body.email).to.equal(otherOtherUser.email);
+      });
+      });
+
     });
 
     describe('GET /users', function(){
 
       it('should return all users', async function(){
-        let newUser1 = await addUser(newUser);
-        let newUser2 = await addUser(otherUser);
+  //      let newUser1 = await addUser(newUser);
+  //      let newUser2 = await addUser(otherUser);
 
 
         return chai.request(app)
         .get('/users')
         .then(function(res){
+          expect(res).to.have.status(200);
           //deep equal does a full property name and value match, instead of object identity match, which i got before deep equal
-          expect(res.body).to.deep.equal([newUser1.serialize(), newUser2.serialize()]);
+          expect(res.body).to.deep.equal([newUser, otherUser, otherOtherUser]);
         })
       })
 
       describe('with a title search', function(){
         it('should return users that have searched title in their library', async function(){
           //async tells function to look out for asynchronous actviity
-          let newUser1 = await addUser(newUser);
-          let newUser2 = await addUser(otherUser);
-          let newUser3 = await addUser(otherOtherUser);
+    //      let newUser1 = await addUser(newUser);
+     //     let newUser2 = await addUser(otherUser);
+     //     let newUser3 = await addUser(otherOtherUser);
 
           return chai.request(app)
           .get('/users?title=Book3')
           .then(function(res){
           //deep equal does a full property name and value match, instead of object identity match, which i got before deep equal
-            expect(res.body).to.deep.equal([newUser1.serialize(), newUser2.serialize()]);
+            expect(res.body).to.deep.equal([newUser, otherUser]);
           })
         })
       })
     })
 
-    xit('should add a book to library', function(){
+    describe('PUT /users', function(){
+
+      it('should add a book to library', function(){
       // strategy:
     //  1. Get an existing library from db
     //  2. Make a PUT request to update that library
     //  3. Prove library returned by request contains new book we sent
     //  4. Prove library in db is correctly updated
     //makes a new user and stores in test db, makes it so don't have to use POST endpoint to test PUT endpoint, because that might mess up stuff
-    return addUser(newUser).then(function(user) {
-      return chai.request(app)
-      .put(`/users/${user._id}`)
-      .send({title: "Book Title"})
-      .then(function(res){
-       expect(res.body).to.be.empty;
-       expect(res).to.have.status(204);
-       return User.findById(user._id)	
-     })
-      .then(function(updatedUser){
-       return expect(updatedUser.library).to.equal({title: "Book Title"});
-     })
-
+  //  return addUser(newUser).then(function(user) {
+      
+      User.findOne()
+    //grabs a user and then grabs its id to be used in the endpoint
+       .then(function(user){
+        return chai.request(app)
+        .put(`/users/${user.id}/library`)
+        .send({title: "Book Title"})
+        .then(function(res){
+          console.log("add user console log" + JSON.stringify(res.body));
+          expect(res).to.have.status(204);
+          return User.findById(user.id)	
+        })
+        .then(function(updatedUser){
+          return expect(updatedUser.library).to.equal({title: "New Book Title"});
+          expect(res.body).to.include({title: "New Book Title"});
+         })
+        })
+      })
     })
 
-  });
-    xit('should delete a book from a user library', function(){
-      // strategy:
-    //  1. get a library
-    //  2. make a DELETE request for that a particular book in that libary
-    //  3. assert that response has right status code
-    //  4. prove that library with the deleted book doesn't exist in db anymore
-    //below code is assuming there is a variable called targetDelete that is holding the value assigned to an event listener "delete" button next to a book title in a library. If user clicks delete next to a title, code loops over the items in the library object, and if one matches the name of the item clicked, gets deleted from the library
-    return chai.request(app)
-    .delete(`/users/${user._id}`, (req, res) => {
-      User
-      .findbyIdAndRemove(req.params.id)
-      .then(book => res.status(204).end())
-      .catch(err=>res.status(500).json({ message: 'Internal server error'}))
+    describe('DELETE /users', function(){
+
+      it('should delete a book from a user library', function(){
+        User.library.findById()
+      //find book by its given id
+          .then(function(){
+            return chai.request(app)
+            //endpoint for deleted book id?
+            .delete(`/users/${user.id}/library/${book.id}`)
+          })
+          .then(function(res) {
+            expect(res).to.have.status(204);
+            return User.library.findById(book.id);
+           })
+          .then(function(deletedBook) {
+            expect(deletedBook).to.be.null;
+          });
+      })
     })
-  })
-  })
+})
+//})
 

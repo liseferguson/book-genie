@@ -28,8 +28,11 @@ userSchema.methods.serialize = function() {
 	console.log('made it to serialize');
   return {
     firstName: this.firstName,
+    lastName: this.lastName,
+    password: this.password,
     email: this.email,
     city: this.city,
+    zipcode: this.zipcode,
     library: this.library.map(
         (book) => book.serialize()
       )
