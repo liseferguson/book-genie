@@ -1,5 +1,7 @@
 "use strict";
 
+const bcrypt = require('bcryptjs');
+
 const mongoose = require('mongoose');
 
 //Mongoose uses built in es6 promises
@@ -38,6 +40,16 @@ userSchema.methods.serialize = function() {
       )
   };
 };
+
+//validate that password is sufficient
+userSchema.methods.validatePassword = function(password) {
+  return bcrypt.compare(password, this.password);
+};
+
+//encrpts pw with 10 salt rounds
+userSchema.statics.hashPassword = function(password) {
+  return bcrypt.hash(password, 10);
+}
 
 bookSchema.methods.serialize = function() {
   console.log('made it to book serialize');

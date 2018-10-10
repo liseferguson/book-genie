@@ -193,11 +193,11 @@ describe('/users endpoints', function() {
           .then(function(){
             return chai.request(app)
             //endpoint for deleted book id?
-            .delete(`/users/${user.id}/library/${book.id}`)
+            .delete(`/users/${user.id}/library/${title.id}`)
           })
           .then(function(res) {
             expect(res).to.have.status(204);
-            return User.library.findById(book.id);
+            return User.library.findById(title.id);
            })
           .then(function(deletedBook) {
             expect(deletedBook).to.be.null;

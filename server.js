@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 //modularize routes
-const { TEST_DATABASE_URL, PORT } = require('./config');
+const { DEV_DATABASE_URL, PORT } = require('./config');
 
 const usersRouter = require('./routes/usersRouter');
 const authRouter = require('./routes/authRouter');
@@ -21,12 +21,14 @@ const authRouter = require('./routes/authRouter');
 //log to http layer
 app.use(morgan('common'));
 
+
 // Parse request body
 app.use(express.json());
 
 //when requests come in, they get routed to the express router
 app.use('/users', usersRouter);
-//app.use('/auth', authRouter);
+
+app.use('/auth', authRouter);
 
 //catch all in case user enters non-existent endpoint
 app.use('*', function(req, res) {
@@ -48,6 +50,7 @@ let server;
 
 
  function runServer(databaseUrl, port = PORT) { 
+  console.log(`databaseUrl=`+databaseUrl);
   return new Promise((resolve, reject) => { 
     mongoose.connect(databaseUrl, err => { 
       if (err) { return reject(err); } 
@@ -78,7 +81,7 @@ function closeServer() {
 // if server.js is called directly (aka, with `node server.js`), this block
 // runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
 if (require.main === module) {
-  runServer(TEST_DATABASE_URL).catch(err => console.error(err));
+  runServer(DEV_DATABASE_URL).catch(err => console.error(err));
 }
 
 module.exports = { runServer, app, closeServer };

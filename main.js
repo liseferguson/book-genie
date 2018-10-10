@@ -3,31 +3,6 @@
 //is global variable because user might want to start another search any time in app
 let currentSearchTerm = "";
 
-//grabs user first name, which is saved in the database
-let userName = "";
-
-//function to handle sign-in form. Checks to see if user entered correct password
-function handleSignInForm(){
-
-}
-
-//activates sign-up button to take user to sign-up form
-
-function buttonToSignUpForm(){
-	$('.signUpButton').click(function(event){
-		$('.signUpForm').css('display', 'block');
-	});
-}
-
-//after user has filled out all required fields on form and hits "submit"
-function submitSignUpForm(){
-
-}
-
-//after user signs in with correct email and password, is taken to welcome page
-function welcomePage(){
-	
-}
 
 //listener event that handles the search button. Assigns search terms to currentSearchTerm variable
 function handleBookSearch(){

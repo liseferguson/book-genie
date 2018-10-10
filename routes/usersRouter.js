@@ -5,11 +5,27 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
 
+const { JWT_SECRET, JWT_EXPIRY } = require('../config');
 const { User } = require('../models');
+
+//create a signed jwt
+const createAuthToken = function (user) {
+  return new Promise(function (resolve, reject) {
+    jwt.sign({ user }, JWT_SECRET, { expiresIn: JWT_EXPIRY }, function (err, authToken) {
+      if (err) {
+        console.log(`createAuthToken: `+ err);
+        return reject(err);
+      }
+      resolve(authToken);
+    });
+  });
+};
 
 //returns all users to be scrollable, list-style, on one screen
 router.get('/', (req, res) => {
@@ -65,8 +81,7 @@ router.post("/", jsonParser, (req, res) => {
 	const requiredFields = ['firstName', 'lastName','password', 'email', 'city', 'zipcode'];
 	const missingField = requiredFields.find(field => !(field in req.body));
 
-
-  	if (missingField) {
+  if (missingField) {
     return res.status(422).json({
       code: 422,
       reason: 'ValidationError',
@@ -74,36 +89,115 @@ router.post("/", jsonParser, (req, res) => {
       location: missingField
     });
   }
- User
-  .findOne({ email: req.body.email })
-  .then(user => {
-  	console.log(JSON.stringify(user));
-  	if (user) {
-  		const message = 'This email already has a BookGenie account. Please sign in';
-  		console.error(message);
-  	    return res.status(400).send(message);
-  	}
-    else {
-    	User
-    	 .create({
-    	 	firstName: req.body.firstName,
-    		lastName: req.body.lastName,
-    		password: req.body.password,
-    		email: req.body.email,
-    		city: req.body.city,
-    		zipcode: req.body.zipcode,
+
+  //all of this is authentication stuff
+  //make sure strings are fields so that can trim whitespace off if unintentionally added by user
+  //zipcode is number, so just leave off?
+  const stringFields = ['firstName', 'lastName', 'password', 'email', 'city'];
+  const nonStringField = stringFields.find(field =>
+    (field in req.body) && typeof req.body[field] !== 'string'
+  );
+
+  if (nonStringField) {
+    return res.status(422).json({
+      code: 422,
+      reason: 'ValidationError',
+      message: 'Incorrect field type: expected string',
+      location: nonStringField
+    });
+  }
+
+  const explicitlyTrimmedFields = ['email', 'password'];
+
+  const nonTrimmedField = explicitlyTrimmedFields.find(field =>
+    req.body[field].trim() !== req.body[field]
+  );
+  const sizedFields = {
+    password: {
+      min:5,
+      max: 72
+    }
+  };
+  const tooSmallField = Object.keys(sizedFields).find(field =>
+    'min' in sizedFields[field] &&
+    req.body[field].trim().length < sizedFields[field].min
+    );
+  const tooLargeField = Object.keys(sizedFields).find(field =>
+    'max' in sizedFields[field] &&
+    req.body[field].trim().length > sizedFields[field].max
+    );
+  if (tooSmallField || tooLargeField) {
+    return res.status(422).json({
+      code: 422,
+      reason: 'ValidationError',
+      message: tooSmallField
+      ? `Must be at least ${sizedFields[tooSmallField]
+        .min} characters long`
+        : `Must be at most ${sizedFields[tooLargeField]
+          .max} characters long`,
+          location: tooSmallField || tooLargeField
+        });
+  }
+//password has no default value
+
+  let {password, firstName = '', lastName = '', email = '', city = '', zipCode = ''} = req.body;
+      // Username and password come in pre-trimmed, otherwise we throw an error before this
+  firstName = firstName.trim();
+  lastName = lastName.trim();
+  email = email.trim();
+  city = city.trim();
+  zipCode = zipCode.trim();
+  
+  User
+  .find({ email: req.body.email })
+  .count()
+  .then(count => {
+    if (count > 0) {
+      const message = 'This email already has a BookGenie account. Please sign in';
+      console.error(message);
+      return res.status(400).send(message);
+    }
+    return User.hashPassword(password);
+    })//END OF USER.FIND
+    .then (hash => {
+      console.log('creating user');
+      return User
+      .create({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        password: hash,
+        email: req.body.email,
+        city: req.body.city,
+        zipcode: req.body.zipcode,
         library: req.body.library
-    	})
-    	 .then(item => {
-    	 	res.status(201).json(item);
-    	 })
-         .catch(err => {
-            console.error(err);
-            res.status(500).json({ error: 'Something went wrong' });
+      });
+    })
+      // If there is no existing user, hash the password
+      .then(user => {
+        console.log('beginning authentication');
+        return createAuthToken(user)
+        .then(authToken => {
+          return res.status(201).json({
+            authToken: authToken,
+            userId: user._id,
+            email: user.email
           });
-   	 }
-	});
-}); //END OF POST REQUEST
+        });
+      })
+      .catch(err => {
+        console.log('caught error' + err);
+        // Forward validation errors on to the client, otherwise give a 500
+        // error because something unexpected has happened
+        if (err.reason === 'ValidationError') {
+          return res.status(err.code).json(err);
+        }
+        res.status(500).json({code: 500, message: 'Internal server error'});
+      }); //END OF CATCH
+ }); 
+    //END OF POST REQUEST
+
+
+
 
 //lets user add books to their library. Also edit titles already there?
 router.put('/:id/library', jsonParser, (req, res) => {
@@ -127,21 +221,13 @@ router.put('/:id/library', jsonParser, (req, res) => {
 });
 
 //delete a book from a user library
+
 router.delete('/:id/library', (req, res) => {
-  User.delete(req.body.library.title);
-  console.log(`Deleted shopping list item \`${req.body.title}\``);
+  User.delete(req.body.title);
+  console.log(`Deleted title \`${req.body.title}\``);
   res.status(204).end();
-})
-  
+});
 
-//for when user has posted a new item in their library
 
-//for when user updates their profile info or edits item in library
+module.exports =  router;
 
-//for when user deletes a title from their library
- /*router.delete('/:id' (req, res) => {
-	//??? how to delete a title?
-})
-*/ 
-
-module.exports=  router;
