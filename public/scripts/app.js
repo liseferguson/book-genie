@@ -6,6 +6,7 @@ $(function() {
   registerBrowseLibrariesButton();
   registerMyProfileButton();
   handleSignInForm();
+  registerBookSearchButton();
 });
 
 
@@ -13,6 +14,10 @@ $(function() {
 function handleSignInForm(){
 	$('.userCredentials').submit(event => {
 	  event.preventDefault();
+	  $('.userCredentials').hide();
+	  $('.welcomePage').show();
+	  //temporary until login is working
+	  return
 	  console.log('email-entry is ' + $('.email-entry').val());
 	  console.log('password-entry is ' +$('.password-entry').val());
 	  let userData = {
@@ -133,7 +138,7 @@ function renderAllLibraries(users){
 		    <a href="mailto:${user.email}?Subject=Book%20trade%20request%20from%20your%20neighbor%20on%20Book%20Genie" target="_top">Email ${user.firstName}</a>
 	    </div>   `
 	  })
-	$('.welcomePage').hide();
+//	$('.welcomePage').hide();
 	$('.showAllLibraries').show();
 	$('.all-libraries-container').html(libraryCard); 
 }
@@ -150,23 +155,29 @@ function renderUserLibrary(library){
 
 //listener event for book serach button
 function registerBookSearchButton(){
-	$('.bookSearchTerm').click(loadSearchResults);
+	$('#searchForm').submit(loadSearchResults);
 }
 
 //calls API after button clicked above
+//prevent default is here because fucntion gets called as part olistener event submit above
 function loadSearchResults() {
+	event.preventDefault();
 	console.log("made it to load search results");
 	$.ajax({
 		type: 'GET',
+		data: {
+			title: $('[name=bookSearchTerm]').val()
+		},
 		url: '/users',
-		success: renderSearchResults,
+		success: renderAllLibraries,
 		dataType: 'json',
 		contentType: 'application/json'
 	});
 };
 
 //loads results of search
-function renderSearchResults(users){
+function renderSearchResults(results){
+	console.log(results);
 
 }
 

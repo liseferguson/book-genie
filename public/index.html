@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-    <!-- html below sets content to adjest to different devices' widths accordingly -->
+  <!-- html below sets content to adjest to different devices' widths accordingly -->
   <meta name="viewport" content="width=device-width">
-    <!-- Accessability feature -->
+  <!-- Accessability feature -->
   <meta name="description" content="An app that allows neighbors to borrow books from one another">
-    <!-- normalization -->
+  <!-- normalization -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
-    <!-- link to jquery -->
+  <!-- link to jquery -->
   <script
-      src="https://code.jquery.com/jquery-3.2.1.min.js"
-      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-      crossorigin="anonymous"></script>
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
   <link href="index.css" rel="stylesheet" type="text/css"/>
   <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
 
@@ -23,110 +23,111 @@
   <main role="main" aria-live="assertive">
 
     <header class="header">
-        <section class="titlePage">  
-          <h1 class="App-title" ><img src="https://bit.ly/2xxIVVG" alt="book icon">   Book Genie    <img src="https://bit.ly/2xxIVVG" alt="book icon"></h1>  
-        </section>
-      </header>
+      <section class="titlePage">  
+        <h1 class="App-title" ><img src="https://bit.ly/2xxIVVG" alt="book icon">   Book Genie    <img src="https://bit.ly/2xxIVVG" alt="book icon"></h1>  
+      </section>
+    </header>
 
-      <div class="signInForm">
-        <h1>A neighborhood book trade cooperative. Borrow books from neighbors, and loan out or gift your own.</h1>
-          <form class="userCredentials" role="form">
-            <fieldset name="user-info" class="user-info">
-              <div  class="error-message-container"></div>
-              <div class="email-row"
-                <label for="email" class="email-label">Email Address:</label>
-                  <input type="email" class="email-entry" required>
-              </div>
-              <div class="password-row">
-                <label for="password" class="password-label">Password:</label>
-                  <input type="password-entry" class="password-entry" required>
-              </div>
-              <div class="homepage-buttons-container">
-                <input class="existing-user" type = "submit" value = "Login"/>
-              <p>OR</p>
-              <input class="new-user" type="button" value="Sign up here!"/>
-              </div>
-              <div class="demo-container">
-                <h7 class="demo-info"> For demo use:<h7>
-                <h7 class="demo-info login"> u: Tester@email.com<h7>
-                <h7 class="demo-info login"> p: password1<h7>
+    <div class="signInForm">
+      <h1>A neighborhood book trade cooperative. Borrow books from neighbors, and loan out or gift your own.</h1>
+      <form class="userCredentials" role="form">
+        <fieldset name="user-info" class="user-info">
+          <div  class="error-message-container"></div>
+          <div class="email-row"
+          <label for="email" class="email-label">Email Address:</label>
+          <input type="email" class="email-entry" required>
+        </div>
+        <div class="password-row">
+          <label for="password" class="password-label">Password:</label>
+          <input type="password-entry" class="password-entry" required>
+        </div>
+        <div class="homepage-buttons-container">
+          <input class="existing-user" type = "submit" value = "Login"/>
+          <p>OR</p>
+          <input class="new-user" type="button" value="Sign up here!"/>
+        </div>
+        <div class="demo-container">
+          <h7 class="demo-info"> For demo use:<h7>
+            <h7 class="demo-info login"> u: Tester@email.com<h7>
+              <h7 class="demo-info login"> p: password1<h7>
               </div>
             </fieldset>
-        </form>
-      </div>
+          </form>
+        </div>
 
-      <div class="signUpForm">
-        <h1>Sign up to join the Book Genie community</h1>
-        <div  class="password-mismatch-error-message-container"></div>
-         <img src ="/images/avatars/question.png" class="unknownTag">
+        <div class="signUpForm">
+          <h1>Sign up to join the Book Genie community</h1>
+          <div  class="password-mismatch-error-message-container"></div>
+          <img src ="/images/avatars/question.png" class="unknownTag">
           <form action="#" id="userInfo" role="form">
             <label for="firstName">First Name</label>
-              <input type="text" name="firstName" required>
+            <input type="text" name="firstName" required>
             <label for="lastName">Last Name</label>
-              <input type="text" name="lastName" required>
+            <input type="text" name="lastName" required>
             <label for="email">Email Address</label>
-              <input type="email" name="email" required>
+            <input type="email" name="email" required>
             <label for="city">City</label>
-              <input type="text" name="city" required>
+            <input type="text" name="city" required>
             <label for="zipcode">Zip Code</label>
-              <input type="text" name="zipcode" pattern="[0-9]{5}" required>
+            <input type="text" name="zipcode" pattern="[0-9]{5}" required>
             <label for="password">Password</label>
-              <input type="password" name="password" required>
+            <input type="password" name="password" required>
             <label for="password2">Re-Enter Password</label>
-              <input type="password" name="password2" required>
+            <input type="password" name="password2" required>
             <button class="signUpButton" type="submit" role="button">Sign Up!</button>
           </form>
-      </div>
+        </div>
 
-      <div class="welcomePage">
-        <h1></h1>
-        <div class="welcome-nametag"></div>
-          <form action="#" class="searchForm" role="form">
+        <div class="welcomePage">
+          <h1></h1>
+          <div class="welcome-nametag"></div>
+          <form action="#" id="searchForm" role="form">
             <label for="bookSearchForm">Enter a title</label>
-              <input type="text" name="bookSearchTerm" required>
+            <input type="text" name="bookSearchTerm" required>
             <button type="submit" role="button">Go!</button>
-            <button type="button" class="browseLibrariesButton" role="button">Browse Libraries</button>
-            <button type="button" class="myProfileButton" role="button">My Profile</button>
-      </div>
+          </form>
+          <button type="button" class="browseLibrariesButton" role="button">Browse Libraries</button>
+          <button type="button" class="myProfileButton" role="button">My Profile</button>
+        </div>
 
-      <div class="searchResultsPage">
-        <h1></h1>
-        <div class="no-results-error-message-container"></div>
-        <div class="search-results-container"></div>
-        <h2>Or, try another search</h2>
+        <div class="searchResultsPage">
+          <h1></h1>
+          <div class="no-results-error-message-container"></div>
+          <div class="search-results-container"></div>
+          <h2>Or, try another search</h2>
           <form action="#" class="bookSearchForm" role="form">
             <label for="bookSearchForm">Enter a title</label>
-              <input type="text" class="searchTerm" required>
+            <input type="text" class="searchTerm" required>
             <button type="submit" class="class="bookSearchTerm" role="button">Go!</button>
           </form>
-      </div>
+        </div>
 
-      <div class="showAllLibraries">
-        <div class ="all-libraries-container"></div>
-      </div>  
+        <div class="showAllLibraries">
+          <div class ="all-libraries-container"></div>
+        </div>  
 
-      <div class="myProfile">
-        <div class="user-info-card-container"></div>
-        <div class="myLibrary"></div>
-      </div>
+        <div class="myProfile">
+          <div class="user-info-card-container"></div>
+          <div class="myLibrary"></div>
+        </div>
 
-    <footer>
-      <div class="credits">
-        <p class="credits-icons">Book icons by
-          <a href="https://www.flaticon.com/authors/freepik" target="_blank" class="credits">Freepik</a>
-          House icons by
-          <a href="https://www.flaticon.com/authors/icomoon" target="_blank" class="credits">Icomoon</a>
-          and
-          <a href="https://www.flaticon.com/authors/anton-saputro" target="_blank" class="credits">Anton Saputro</a>
-           from
-          <a href="https://www.flaticon.com" target="_blank" class="credits">www.flaticon.com</a>
-        </p>
-      </div>
-    </footer>
+        <footer>
+          <div class="credits">
+            <p class="credits-icons">Book icons by
+              <a href="https://www.flaticon.com/authors/freepik" target="_blank" class="credits">Freepik</a>
+              House icons by
+              <a href="https://www.flaticon.com/authors/icomoon" target="_blank" class="credits">Icomoon</a>
+              and
+              <a href="https://www.flaticon.com/authors/anton-saputro" target="_blank" class="credits">Anton Saputro</a>
+              from
+              <a href="https://www.flaticon.com" target="_blank" class="credits">www.flaticon.com</a>
+            </p>
+          </div>
+        </footer>
 
-  </main>
-  <script type="text/javascript" scr="main.js"></script>
-  <script type= "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-  <script type= "text/javascript" src = "scripts/app.js"></script>
-</body>
-</html>
+      </main>
+      <script type="text/javascript" scr="main.js"></script>
+      <script type= "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+      <script type= "text/javascript" src = "scripts/app.js"></script>
+    </body>
+    </html>

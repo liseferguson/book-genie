@@ -30,6 +30,7 @@ const createAuthToken = function (user) {
 //returns all users to be scrollable, list-style, on one screen
 router.get('/', (req, res) => {
 	console.log("hey we made it");
+  //where back end and front end meet
   let title = req.query.title;
 //returns all users who have a specified title that is searched for
 	User.find()
