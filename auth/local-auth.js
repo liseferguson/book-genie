@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const {User} = require('../models');
 
 function localAuth(req, res, next) {
+  console.log('made it to localAuth');
   const { email, password } = req.body;
   console.log('Im the request=', req.body);
   if (!email && !password) {

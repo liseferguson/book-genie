@@ -3,10 +3,25 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
+const passport = require('passport');
+
+const usersRouter = require('./routes/usersRouter');
+
+const authRouter = require('./auth/authRouter');
+const { localStrategy, jwtStrategy } = require('./auth/strategies');
+//const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+
+app.use('/users', usersRouter);
+app.use('/auth', authRouter);
 
 //creates a static web server, servers static assets
 app.use(express.static('public'));
 app.listen(process.env.PORT || 8080);
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+const jwtAuth = passport.authenticate('jwt', { session: false });
 
 
 const mongoose = require('mongoose');
@@ -15,8 +30,8 @@ mongoose.Promise = global.Promise;
 //modularize routes
 const { DEV_DATABASE_URL, PORT } = require('./config');
 
-const usersRouter = require('./routes/usersRouter');
-const authRouter = require('./routes/authRouter');
+//const usersRouter = require('./routes/usersRouter');
+//const authRouter = require('./routes/authRouter');
 
 //log to http layer
 app.use(morgan('common'));
@@ -26,9 +41,9 @@ app.use(morgan('common'));
 app.use(express.json());
 
 //when requests come in, they get routed to the express router
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
 
-app.use('/auth', authRouter);
+//app.use('/auth', authRouter);
 
 //catch all in case user enters non-existent endpoint
 app.use('*', function(req, res) {

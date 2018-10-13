@@ -8,12 +8,12 @@ const jsonParser = bodyParser.json();
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-const localStrategy = require('../auth/strategies');
+const localStrategy = require('./strategies');
 
 const router = express.Router();
 
-//const localAuth = require('../auth/local-auth');
-const jwtAuth = require('../auth/jwt-auth');
+//const localAuth = require('./local-auth');
+const jwtAuth = require('./jwt-auth');
 const { JWT_SECRET, JWT_EXPIRY } = require('../config');
 
 const localAuth = passport.authenticate('local', {session: false});
@@ -32,6 +32,7 @@ const createAuthToken = function (user) {
 
 // The user provides an email and password to login and is given an authtoken
 router.post('/login', localAuth, (req, res, next) => {
+  console.log('made it to login!');
   createAuthToken(req.user)
   .then(authToken => {
     res.json({
@@ -41,6 +42,7 @@ router.post('/login', localAuth, (req, res, next) => {
     });
   })
   .catch(err => {
+    console.log('caught an error' + err);
     next(err);
   });
 });

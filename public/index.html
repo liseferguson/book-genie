@@ -24,22 +24,22 @@
 
     <header class="header">
         <section class="titlePage">  
-          <h1 class="App-title"><img src="https://bit.ly/2xxIVVG" alt="book icon">   Book Genie    <img src="https://bit.ly/2xxIVVG" alt="book icon"></h1>   
+          <h1 class="App-title" ><img src="https://bit.ly/2xxIVVG" alt="book icon">   Book Genie    <img src="https://bit.ly/2xxIVVG" alt="book icon"></h1>  
         </section>
       </header>
 
       <div class="signInForm">
         <h1>A neighborhood book trade cooperative. Borrow books from neighbors, and loan out or gift your own.</h1>
-          <form action="#" class="userCredentials" role="form">
+          <form class="userCredentials" role="form">
             <fieldset name="user-info" class="user-info">
               <div  class="error-message-container"></div>
               <div class="email-row"
                 <label for="email" class="email-label">Email Address:</label>
                   <input type="email" class="email-entry" required>
               </div>
-              <div class="password-row>
+              <div class="password-row">
                 <label for="password" class="password-label">Password:</label>
-                  <input type="password-entry" name="psw" required>
+                  <input type="password-entry" class="password-entry" required>
               </div>
               <div class="homepage-buttons-container">
                 <input class="existing-user" type = "submit" value = "Login"/>
@@ -57,6 +57,8 @@
 
       <div class="signUpForm">
         <h1>Sign up to join the Book Genie community</h1>
+        <div  class="password-mismatch-error-message-container"></div>
+         <img src ="/images/avatars/question.png" class="unknownTag">
           <form action="#" id="userInfo" role="form">
             <label for="firstName">First Name</label>
               <input type="text" name="firstName" required>
@@ -77,16 +79,19 @@
       </div>
 
       <div class="welcomePage">
-        <h1>Welcome!</h1>
+        <h1></h1>
+        <div class="welcome-nametag"></div>
           <form action="#" class="searchForm" role="form">
             <label for="bookSearchForm">Enter a title</label>
               <input type="text" name="bookSearchTerm" required>
             <button type="submit" role="button">Go!</button>
-            <button type="button" role="button">Go to My Profile</button>
+            <button type="button" class="browseLibrariesButton" role="button">Browse Libraries</button>
+            <button type="button" class="myProfileButton" role="button">My Profile</button>
       </div>
 
       <div class="searchResultsPage">
-        <h1>Number of your neighbors have searchTerm in their library!</h1>
+        <h1></h1>
+        <div class="no-results-error-message-container"></div>
         <div class="search-results-container"></div>
         <h2>Or, try another search</h2>
           <form action="#" class="bookSearchForm" role="form">
@@ -100,19 +105,24 @@
         <div class ="all-libraries-container"></div>
       </div>  
 
+      <div class="myProfile">
+        <div class="user-info-card-container"></div>
+        <div class="myLibrary"></div>
+      </div>
+
     <footer>
       <div class="credits">
-       <p class="credits-icons">Book icons by
+        <p class="credits-icons">Book icons by
           <a href="https://www.flaticon.com/authors/freepik" target="_blank" class="credits">Freepik</a>
           House icons by
           <a href="https://www.flaticon.com/authors/icomoon" target="_blank" class="credits">Icomoon</a>
           and
           <a href="https://www.flaticon.com/authors/anton-saputro" target="_blank" class="credits">Anton Saputro</a>
            from
-           <a href="https://www.flaticon.com" target="_blank" class="credits">www.flaticon.com</a>
-         </p>
+          <a href="https://www.flaticon.com" target="_blank" class="credits">www.flaticon.com</a>
+        </p>
       </div>
-  </footer>
+    </footer>
 
   </main>
   <script type="text/javascript" scr="main.js"></script>

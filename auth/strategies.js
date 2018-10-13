@@ -7,13 +7,15 @@ const { Strategy: LocalStrategy } = require('passport-local');
 // https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Assigning_to_new_variable_names
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
 
-const { User } = require('../users/models');
+const { User } = require('../models');
 const { JWT_SECRET } = require('../config');
 
 const localStrategy = new LocalStrategy((username, password, callback) => {
+  console.log('made it to local strategy');
   let user;
   User.findOne({ username: username })
     .then(_user => {
+      console.log(user);
       user = _user;
       if (!user) {
         // Return a rejected promise so we break out of the chain of .thens.

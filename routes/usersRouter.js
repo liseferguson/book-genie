@@ -174,7 +174,7 @@ router.post("/", jsonParser, (req, res) => {
     })
       // If there is no existing user, hash the password
       .then(user => {
-        console.log('beginning authentication');
+        console.log('creating authToken');
         return createAuthToken(user)
         .then(authToken => {
           return res.status(201).json({
@@ -195,7 +195,6 @@ router.post("/", jsonParser, (req, res) => {
       }); //END OF CATCH
  }); 
     //END OF POST REQUEST
-
 
 
 

@@ -43,6 +43,8 @@ userSchema.methods.serialize = function() {
 
 //validate that password is sufficient
 userSchema.methods.validatePassword = function(password) {
+  console.log('db user password= ' + this.password);
+  console.log(password);
   return bcrypt.compare(password, this.password);
 };
 
