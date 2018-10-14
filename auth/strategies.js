@@ -10,25 +10,30 @@ const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
 const { User } = require('../models');
 const { JWT_SECRET } = require('../config');
 
-const localStrategy = new LocalStrategy((username, password, callback) => {
-  console.log('made it to local strategy');
+// This is the login portion of the auth, used when email and password are passed to /auth/login
+const localStrategy = new LocalStrategy(
+  // This is needed because the username field is actually called email
+  {usernameField: 'email', passwordField: 'password'},
+  (email, password, callback) => {
   let user;
-  User.findOne({ username: username })
-    .then(_user => {
-      console.log(user);
-      user = _user;
-      if (!user) {
+  User.findOne({ email: email })
+    .then(userFound => {
+      if (!userFound) {
         // Return a rejected promise so we break out of the chain of .thens.
         // Any errors like this will be handled in the catch block.
+        console.log('user not found by email: ' + email);
         return Promise.reject({
           reason: 'LoginError',
           message: 'Incorrect username or password'
         });
       }
+      // pushing userFound to outer scope, so that it is available in next call
+      user = userFound
       return user.validatePassword(password);
     })
     .then(isValid => {
       if (!isValid) {
+        console.log('invalid password');
         return Promise.reject({
           reason: 'LoginError',
           message: 'Incorrect username or password'
@@ -37,6 +42,8 @@ const localStrategy = new LocalStrategy((username, password, callback) => {
       return callback(null, user);
     })
     .catch(err => {
+      console.log('Login ERROR:');
+      console.log(err);
       if (err.reason === 'LoginError') {
         return callback(null, false, err);
       }
@@ -44,6 +51,7 @@ const localStrategy = new LocalStrategy((username, password, callback) => {
     });
 });
 
+// This is the protected endpoint token verification portion, used when a token is passed (after login)
 const jwtStrategy = new JwtStrategy(
   {
     secretOrKey: JWT_SECRET,

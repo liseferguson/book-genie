@@ -1,49 +1,52 @@
 'use strict';
 //import 3rd party libraries
 const express = require('express');
-const app = express();
+
 const morgan = require('morgan');
 const passport = require('passport');
 
 const usersRouter = require('./routes/usersRouter');
-
-const authRouter = require('./auth/authRouter');
-const { localStrategy, jwtStrategy } = require('./auth/strategies');
-//const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
-
-app.use('/users', usersRouter);
-app.use('/auth', authRouter);
-
-//creates a static web server, servers static assets
-app.use(express.static('public'));
-app.listen(process.env.PORT || 8080);
-
-passport.use(localStrategy);
-passport.use(jwtStrategy);
-
-const jwtAuth = passport.authenticate('jwt', { session: false });
+const { authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-//modularize routes
 const { DEV_DATABASE_URL, PORT } = require('./config');
-
-//const usersRouter = require('./routes/usersRouter');
-//const authRouter = require('./routes/authRouter');
+const app = express();
 
 //log to http layer
 app.use(morgan('common'));
 
+// CORS
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  if (req.method === 'OPTIONS') {
+    return res.send(204);
+  }
+  next();
+});
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+// when requests come in, they get routed to the express router
+app.use('/users', usersRouter);
+app.use('/auth', authRouter);
+
+// use this with endpoints that are protected
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+
+//creates a static web server, servers static assets
+app.use(express.static('public'));
+app.listen(process.env.PORT || 8080);
+
 
 // Parse request body
 app.use(express.json());
-
-//when requests come in, they get routed to the express router
-//app.use('/users', usersRouter);
-
-//app.use('/auth', authRouter);
 
 //catch all in case user enters non-existent endpoint
 app.use('*', function(req, res) {

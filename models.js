@@ -27,11 +27,9 @@ const userSchema = mongoose.Schema({
 //represents how the outside world sees our users
 //Note to self: make tests to make sure serialize is working properly
 userSchema.methods.serialize = function() {
-	console.log('made it to serialize');
   return {
     firstName: this.firstName,
     lastName: this.lastName,
-    password: this.password,
     email: this.email,
     city: this.city,
     zipcode: this.zipcode,
@@ -43,8 +41,6 @@ userSchema.methods.serialize = function() {
 
 //validate that password is sufficient
 userSchema.methods.validatePassword = function(password) {
-  console.log('db user password= ' + this.password);
-  console.log(password);
   return bcrypt.compare(password, this.password);
 };
 
@@ -54,7 +50,6 @@ userSchema.statics.hashPassword = function(password) {
 }
 
 bookSchema.methods.serialize = function() {
-  console.log('made it to book serialize');
   return {
     title: this.title
   };
