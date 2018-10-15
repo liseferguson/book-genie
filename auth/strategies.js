@@ -15,6 +15,7 @@ const localStrategy = new LocalStrategy(
   // This is needed because the username field is actually called email
   {usernameField: 'email', passwordField: 'password'},
   (email, password, callback) => {
+  //define user so that it cn exist outside of userFound callback scope
   let user;
   User.findOne({ email: email })
     .then(userFound => {

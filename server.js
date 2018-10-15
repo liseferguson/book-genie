@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const passport = require('passport');
 
 const usersRouter = require('./routes/usersRouter');
+
 const { authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 
@@ -18,7 +19,8 @@ const app = express();
 //log to http layer
 app.use(morgan('common'));
 
-// CORS
+// CORS (Alex put this here. It is cross origin scrip protection. Was in example. So far, app worls without it. Not sure if necessary)
+/*
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
@@ -28,6 +30,7 @@ app.use(function (req, res, next) {
   }
   next();
 });
+*/
 
 passport.use(localStrategy);
 passport.use(jwtStrategy);
