@@ -7,6 +7,7 @@ $(function() {
 	registerMyProfileButton();
 	handleSignInForm();
 	registerBookSearchButton();
+	registerUpdateLibraryButton();
 });
 
 
@@ -23,13 +24,14 @@ function handleSignInForm(){
 			url: '/auth/login',
 			data: JSON.stringify(userData),
 			success: function(res) {
+				console.log(res);
 				localStorage.setItem('authToken', res.authToken);
-				localStorage.setItem('userId', res.userId);
-				localStorage.setItem('email', res.email);
+				localStorage.setItem('userId', res.user.id);
 				$('.userCredentials').hide();
 				$('.welcomePage').show();
+				$('<p>').appendTo('.welcome-nametag').addClass('welcome-back-message').html(`Welcome back, ${res.user.firstName} !`);
 			},
-			error: function(xhr, status, error) {
+			error: function(res, status, error) {
 	      //$('.userCredentials').reset();
 	      $('.error-message-container').html("");
 	      $('<p>').appendTo('.error-message-container').addClass('login-error-message').html('Your username or password was incorrect, please try again');
@@ -80,10 +82,11 @@ function submitSignUpForm(){
 			},
 			error: function(res) {
 				console.log(res);
-				window.alert(res.responseText);
+				//window.alert(res.responseText);
 				$('#login-user').hide();
 				$('.login-error-message').remove();
-
+				$('.existing-user-error-message-container').html("");
+	      $('<p>').appendTo('.existing-user-error-message-container').addClass('login-error-message').html('Email already has a Book Genie account.<a href="index.html">Please sign in.</a>');
 				$('.error-message-container').addClass('login-error-message').html('<p>There was an error processing your info, please try again</p>');
 			},
 			dataType: 'json',
@@ -115,31 +118,78 @@ function loadAllLibraries() {
 };
 //data is passed from the API call to the function below, where map is applied to users
 function renderAllLibraries(users){
-	let libraryCard = users.map(user => {
+	if(users.length < 1) {
+    $('.all-libraries-container').html("");
+    const noDataMessage = 'Sorry, nobody has that book. Please try another search.';
+    $('<p>').appendTo('.all-libraries-container').addClass('login-error-message').html(noDataMessage);
+    $('.showAllLibraries').show();
+   } else {
+		let libraryCard = users.map(user => {
 		//joining array of strings (books) in library that are <li> items so that can interpolate it
 		let userLibrary = renderUserLibrary(user.library).join("");
+		if (userLibrary == ""){
+			userLibrary = '<li class="empty-library">This library is empty :(</li>'
+		}
 		return  `
 		<div class="user-library-card">
-		<h2 class="firstName">${user.firstName}</h2>
-		<h3 class="city">${user.city}</h3>
-		<h3 class="zipcode">${user.zipcode}</h3>
-		<h3 class="userLibraryTitle"><span>${user.firstName}'s library</span></h3>
-		<ul class="userLibrary">${userLibrary}</ul>
-		<a href="mailto:${user.email}?Subject=Book%20trade%20request%20from%20your%20neighbor%20on%20Book%20Genie" target="_top">Email ${user.firstName}</a>
+			<img src="https://image.flaticon.com/icons/svg/29/29302.svg" class="book-stack-icon">
+			<h2 class="firstName">${user.firstName}</h2>
+			<h3 class="city">${user.city}</h3>
+			<h3 class="zipcode">${user.zipcode}</h3>
+			<a href="mailto:${user.email}?Subject=Book%20trade%20request%20from%20your%20neighbor%20on%20Book%20Genie" target="_top">Email ${user.firstName}</a>
+			<h3 class="userLibraryTitle"><span>${user.firstName}'s library</span></h3>
+			<ul class="userLibrary">${userLibrary}</ul>
 		</div>   `
 	})
-//	$('.welcomePage').hide();
+	//	$('.welcomePage').hide();
 $('.showAllLibraries').show();
 $('.all-libraries-container').html(libraryCard); 
+	}
 }
 
-function renderUserLibrary(library){
-let books = library.map(book => {
-	return `
-	<li>${book.title}</li>
-	`
-})
-return books;
+//if no value is passed for userOwnsLibrary, then will set to false (to use on myProfile for updating books)
+function renderUserLibrary(library, userOwnsLibrary=false){
+	//buttons have data attributes so can use id to delete 
+	let books = library.map(book => {
+		let button = '';
+		if (userOwnsLibrary) {
+			button = `<button class="deleteBook" data-bookId="${book.id}">Delete</button>`;
+		}
+		return `
+		<li>${book.title} ${button}</li>
+		`
+	})
+	return books;
+}
+
+function registerBookDeleteButton(){
+	$('.deleteBook').click(deleteBook);
+}
+
+function deleteBook(event){
+	console.log('got here!!!!!');
+	//takes attribute of data-bookId 
+	let bookId = $(this).attr('data-bookId');
+	let userId = localStorage.getItem('userId');
+	console.log(bookId);
+	$.ajax({
+			type: 'DELETE',
+			url: `/users/${userId}/library/${bookId}`,
+			done: function(res, status, error) {
+				if (status == 204){
+					window.alert("Book deleted. Bang!");
+	//if delete does not return user, then call loadMyProfile instead, which will make another ajax request ot get updated user profile
+					renderMyProfile(res);
+					console.log(res);
+				}
+			},
+			error: function(res, status, error) {
+				console.log(error);
+				window.alert("Delete failed, please try again later.");
+			},
+			dataType: 'json',
+			contentType: 'application/json'
+		});
 }
 
 
@@ -150,7 +200,7 @@ function registerBookSearchButton(){
 
 //calls API after button clicked above
 //prevent default is here because fucntion gets called as part olistener event submit above
-function loadSearchResults() {
+function loadSearchResults(event) {
 	event.preventDefault();
 	$.ajax({
 		type: 'GET',
@@ -166,41 +216,96 @@ function loadSearchResults() {
 
 //loads results of search
 function renderSearchResults(results){
-	console.log(results);
+	console.log(results);		
 }
 
 function registerMyProfileButton(){
 	$('.myProfileButton').click(loadMyProfile);
 }
 
-function loadMyProfile() {
+function loadMyProfile(event) {
+	event.preventDefault();
 	console.log("made it to render profile");
+	//gets userId from localStorage 
+	let userId = localStorage.getItem('userId');
 	$.ajax({
 		type: 'GET',
-		url: '/users/${user._id}',
-		success: renderMyProfile,
+		url: `/users/${userId}`,
+		success: renderMyProfile, 
 		dataType: 'json',
 		contentType: 'application/json'
 	});
 };
 //data is passed from the API call to the function below, where map is applied to users
-function renderMyProfile(){
-	return  `
+function renderMyProfile(user){
+	let userLibrary = renderUserLibrary(user.library, true).join("");
+	$('.welcomePage').hide();
+	if (userLibrary == ""){
+		userLibrary = '<li class="empty-library">Your library is currently empty. Add a book below!</li>'
+	}
+	$('.user-info-card-container').html(`
 	<div class="user-profile-card">
-	<h2 class="firstName">${user.firstName}</h2>
-	<h2 class="lastName">${user.lastName}</h2>
+	<h1 class="userName">${user.firstName} ${user.lastName}</h1>
 	<h2 class="email">${user.email}</h2>
 	<h3 class="city">${user.city}</h3>
 	<h3 class="zipcode">${user.zipcode}</h3>
+	<button type="button" role="button" class="update-profile-button">Update Information</button>
+	</div>  
+
+	<div class="user-library-card">
 	<h3 class="userLibraryTitle"><span>${user.firstName}'s library</span></h3>
 	<ul class="userLibrary">${userLibrary}</ul>
-	</div>   `
+	</div> 
+	`);
+	//call registerBookDeleteButton here instead of at top because books need to load to page first
+	registerBookDeleteButton();
+	$('.myProfile').show();
+	$('.all-libraries-container').hide();
+	//$('.user-library-card').hide();
+}
+//HALP
+function registerUpdateLibraryButton(){
+	$('.addBookToLibrary').click(updateMyLibrary);
+}
+//pass into click event?
 
-	$('.welcomePage').hide();
+function isLibraryEmpty(){
+
 }
 
-function updateMyLibrary(){
-
+/*
+function doesTitleAlreadyExist(){
+	let library = $('.userLibrary')
+	let newTitle = $('[name=title]').val();
+	for (let i = 0; i < library.length; i++){
+		if (library[i] = newTitle){
+			$('.existing-title-error-message-container').html("");
+	      $('<p>').appendTo('.existing-title-error-message-container').addClass('login-error-message').html('');
+				$('.error-message-container').addClass('login-error-message').html('<p>Looks like that book is already in your library</p>');
+		}
+	} else updateMyLibrary();
+}
+*/
+function updateMyLibrary(event){
+	event.preventDefault();
+	let newTitle = $('[name=title]').val();
+	let userId = localStorage.getItem('userId');
+	let bookData = {title: newTitle};
+	$.ajax({
+			type: 'PUT',
+			url: `/users/${userId}/library`,
+			data: JSON.stringify(bookData),
+			success: function(res) {
+				renderMyProfile(res);
+				console.log(res);
+			},
+			error: function(res) {
+				console.log(res);
+				window.alert(res.responseText);
+			},
+			dataType: 'json',
+			contentType: 'application/json'
+		});
 }
 
 /*

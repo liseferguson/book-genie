@@ -35,7 +35,8 @@ userSchema.methods.serialize = function() {
     zipcode: this.zipcode,
     library: this.library.map(
         (book) => book.serialize()
-      )
+      ),
+    id: this._id
   };
 };
 
@@ -51,6 +52,7 @@ userSchema.statics.hashPassword = function(password) {
 
 bookSchema.methods.serialize = function() {
   return {
+    id: this._id,
     title: this.title
   };
 };

@@ -52,6 +52,15 @@ router.get('/', (req, res) => {
 	});
 });
 
+//returns specific user by id
+router.get('/:id', (req, res) => {
+  console.log("made it to router get?");
+  User.findById(req.params.id)
+  .then(user => {
+    return res.json(user.serialize());
+  })
+})
+
 //iterates over users, filters out indivual libraries, then iterates over libraries, filters out titles that match search terms
 function filterUsersByTitle(users, title){
   let matchingUsers = [];
@@ -201,31 +210,42 @@ router.post("/", jsonParser, (req, res) => {
 
 //lets user add books to their library. Also edit titles already there?
 router.put('/:id/library', jsonParser, (req, res) => {
-	return res.status(204).json({});
 	//fill this code in with code that takes req, updates user by adding body, add title to user library, if sucessful return 204 otherwise error
   console.log(`Adding book to library`);
-  const toUpdate = {};
-  const updateableFields = ['title'];
 
-  updateableFields.forEach(field => {
-    if (field in req.body) {
-      toUpdate[field] = req.body[field];
-    }
-  });
-
-  User
-    // all key/value pairs in toUpdate will be updated -- that's what `$set` does
-    .findByIdAndUpdate(req.body.library, { $push: toUpdate })
-    .then(restaurant => res.status(204).end())
-    .catch(err => res.status(500).json({ message: 'Internal server error' }));
+  let userId = req.params.id;
+  User.findById(userId)
+    .then(user => {
+      user.library.push({title: req.body.title});
+      user.save(err => {
+        if (err) {
+          console.log(err);
+          return res.status(err.code).json(err);
+        }
+        else {
+          return res.status(201).json(user.serialize());
+        }
+      })
+    })
 });
-
 //delete a book from a user library
 
-router.delete('/:id/library', (req, res) => {
-  User.delete(req.body.title);
-  console.log(`Deleted title \`${req.body.title}\``);
-  res.status(204).end();
+router.delete('/:userId/library/:bookId', (req, res) => {
+  let userId = req.params.userId;
+  let bookId = req.params.bookId;
+  console.log(userId);
+  console.log(bookId);
+  User.update({_id: req.params.userId}, {$pull:{"library":{_id:req.params.bookId}}})
+    .then(updateObject => {
+      console.log(updateObject);
+        if (updateObject.nModified) {
+          return res.status(204).end;
+        }
+        else {
+          //this is here for reason. to avoid making a follow up request for updated user. if want to delete, see note in app.js deleteBookFunction
+          return res.status(417).json("I'm a bad teapot");
+        }     
+    })
 });
 
 

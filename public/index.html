@@ -24,7 +24,7 @@
 
     <header class="header">
       <section class="titlePage">  
-        <h1 class="App-title" ><img src="https://bit.ly/2xxIVVG" alt="book icon">   Book Genie    <img src="https://bit.ly/2xxIVVG" alt="book icon"></h1>  
+        <h1 class="App-title" ><img src="https://bit.ly/2xxIVVG" alt="book icon"><a href="index.html" class="book-genie-logo">      Book Genie      </a><img src="https://bit.ly/2xxIVVG" alt="book icon"></h1>  
       </section>
     </header>
 
@@ -35,11 +35,11 @@
           <div  class="error-message-container"></div>
           <div class="email-row"
           <label for="email" class="email-label">Email Address:</label>
-          <input type="email" class="email-entry" required>
+          <input type="email" class="email-entry" required value="Tester@email.com">
         </div>
         <div class="password-row">
           <label for="password" class="password-label">Password:</label>
-          <input type="password" class="password-entry" required>
+          <input type="password" class="password-entry" required value="password1">
         </div>
         <div class="homepage-buttons-container">
           <input class="existing-user" type = "submit" value = "Login"/>
@@ -58,6 +58,7 @@
         <div class="signUpForm">
           <h1>Sign up to join the Book Genie community</h1>
           <div  class="password-mismatch-error-message-container"></div>
+          <div  class="existing-user-error-message-container"></div>
           <img src ="/images/avatars/question.png" class="unknownTag">
           <form action="#" id="userInfo" role="form">
             <label for="firstName">First Name</label>
@@ -84,7 +85,7 @@
           <form action="#" id="searchForm" role="form">
             <label for="bookSearchForm">Enter a title</label>
             <input type="text" name="bookSearchTerm" required>
-            <button type="submit" role="button">Go!</button>
+            <button type="submit" class="title-search-button" role="button">Go!</button>
           </form>
           <button type="button" class="browseLibrariesButton" role="button">Browse Libraries</button>
           <button type="button" class="myProfileButton" role="button">My Profile</button>
@@ -107,8 +108,14 @@
         </div>  
 
         <div class="myProfile">
-          <div class="user-info-card-container"></div>
-          <div class="myLibrary"></div>
+          <div class="user-info-card-container">
+          </div>
+          <form action="#" class="addBook" role="form">
+            <div class="existing-title-error-message-container"></div>
+            <label for="addBook">Enter a title</label>
+            <input type="text" name="title" required>
+            <button type="submit" class="addBookToLibrary" role="button">Add book!</button>
+          </form>
         </div>
 
         <footer>
