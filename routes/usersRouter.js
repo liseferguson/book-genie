@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
@@ -211,7 +212,6 @@ router.post("/", jsonParser, (req, res) => {
 //lets user add books to their library. Also edit titles already there?
 router.put('/:id/library', jsonParser, (req, res) => {
 	//fill this code in with code that takes req, updates user by adding body, add title to user library, if sucessful return 204 otherwise error
-  console.log(`Adding book to library`);
 
   let userId = req.params.id;
   User.findById(userId)
@@ -228,6 +228,36 @@ router.put('/:id/library', jsonParser, (req, res) => {
       })
     })
 });
+
+
+//updates user info in profile
+const jwtAuth = passport.authenticate('jwt', { session: false });
+router.put('/:id', jwtAuth, (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    const err = new Error('The `id` is not valid');
+    err.status = 400;
+    return next(err);
+  }
+  let updatedProfile = {};
+  let updateableFields = ['firstName', 'lastName', 'city', 'zipcode'];
+  console.log('req.body=', req.body);
+  updateableFields.forEach(field => {
+    if(field in req.body) {
+      updatedProfile[field] = req.body[field];
+    }
+  });
+  User
+  .findByIdAndUpdate(req.params.id, {$set:updatedProfile})
+  .then(user => {
+    res.status(204).end()
+  })
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({error: 'Something went wrong'});
+  });
+});
+
+
 //delete a book from a user library
 
 router.delete('/:userId/library/:bookId', (req, res) => {
@@ -238,8 +268,10 @@ router.delete('/:userId/library/:bookId', (req, res) => {
   User.update({_id: req.params.userId}, {$pull:{"library":{_id:req.params.bookId}}})
     .then(updateObject => {
       console.log(updateObject);
+      console.log("another teapot");
         if (updateObject.nModified) {
-          return res.status(204).end;
+          console.log("im a good teapot");
+          return res.status(204).end();
         }
         else {
           //this is here for reason. to avoid making a follow up request for updated user. if want to delete, see note in app.js deleteBookFunction

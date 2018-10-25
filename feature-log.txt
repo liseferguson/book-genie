@@ -1,0 +1,12 @@
+Current bugs:
+req bpdy undefined in update profile info 
+
+To-dos:
+Add PUT request so user can update their info
+
+Wish list features:
+Scroll to end of library when new book has been added
+Reset form field after book is added
+Make so user can't add same book twice
+Make search term not case-sensitive
+

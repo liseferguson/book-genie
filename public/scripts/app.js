@@ -8,8 +8,21 @@ $(function() {
 	handleSignInForm();
 	registerBookSearchButton();
 	registerUpdateLibraryButton();
+	registerUserInfoUpdateForm();
 });
 
+//generic function that gets profile and calls callback funciton when done
+function getMyProfile(callback) {
+	//gets userId from localStorage 
+	let userId = localStorage.getItem('userId');
+	$.ajax({
+		type: 'GET',
+		url: `/users/${userId}`,
+		success: callback, 
+		dataType: 'json',
+		contentType: 'application/json'
+	});
+};
 
 //function to handle sign-in form. Checks to see if user entered correct password, recieves token from server if so, is taken to welcome page
 function handleSignInForm(){
@@ -55,13 +68,15 @@ function buttonToSignUpForm(){
 function submitSignUpForm(){
 	$('#userInfo').submit(event => {
 		event.preventDefault();
+		let $form = $('.signUpForm');
 		let userData = {
-			firstName: $('[name=firstName]').val(),
-			lastName: $('[name=lastName]').val(),
-			email: $('[name=email]').val(),
-			city: $('[name=city]').val(),
-			zipcode: $('[name=zipcode]').val(),
-			password: $('[name=password]').val()
+			//form uses jquery to get form element, calling find on form to find chil elements
+			firstName: $form.find('[name=firstName]').val(),
+			lastName: $form.find('[name=lastName]').val(),
+			email: $form.find('[name=email]').val(),
+			city: $form.find('[name=city]').val(),
+			zipcode: $form.find('[name=zipcode]').val(),
+			password: $form.find('[name=password]').val()
 		};
 		//Make sure passwords match, then stop the page from loading farther if they do not.		
 		if ('[password]' !== '[password2]'){
@@ -175,13 +190,9 @@ function deleteBook(event){
 	$.ajax({
 			type: 'DELETE',
 			url: `/users/${userId}/library/${bookId}`,
-			done: function(res, status, error) {
-				if (status == 204){
-					window.alert("Book deleted. Bang!");
+			success: function(res, status, error) {
 	//if delete does not return user, then call loadMyProfile instead, which will make another ajax request ot get updated user profile
-					renderMyProfile(res);
-					console.log(res);
-				}
+				loadMyProfile(event);
 			},
 			error: function(res, status, error) {
 				console.log(error);
@@ -224,17 +235,8 @@ function registerMyProfileButton(){
 }
 
 function loadMyProfile(event) {
-	event.preventDefault();
-	console.log("made it to render profile");
-	//gets userId from localStorage 
-	let userId = localStorage.getItem('userId');
-	$.ajax({
-		type: 'GET',
-		url: `/users/${userId}`,
-		success: renderMyProfile, 
-		dataType: 'json',
-		contentType: 'application/json'
-	});
+	event.preventDefault(); 
+	getMyProfile(renderMyProfile);
 };
 //data is passed from the API call to the function below, where map is applied to users
 function renderMyProfile(user){
@@ -259,6 +261,7 @@ function renderMyProfile(user){
 	`);
 	//call registerBookDeleteButton here instead of at top because books need to load to page first
 	registerBookDeleteButton();
+	registerEditProfileButton();
 	$('.myProfile').show();
 	$('.all-libraries-container').hide();
 	//$('.user-library-card').hide();
@@ -267,11 +270,7 @@ function renderMyProfile(user){
 function registerUpdateLibraryButton(){
 	$('.addBookToLibrary').click(updateMyLibrary);
 }
-//pass into click event?
 
-function isLibraryEmpty(){
-
-}
 
 /*
 function doesTitleAlreadyExist(){
@@ -297,16 +296,64 @@ function updateMyLibrary(event){
 			data: JSON.stringify(bookData),
 			success: function(res) {
 				renderMyProfile(res);
-				console.log(res);
 			},
 			error: function(res) {
-				console.log(res);
 				window.alert(res.responseText);
 			},
 			dataType: 'json',
 			contentType: 'application/json'
 		});
 }
+
+function registerEditProfileButton(){
+	$('.update-profile-button').click(loadEditProfilePage);
+	console.log("yes it is");
+}
+
+function loadEditProfilePage(event){
+	event.preventDefault();
+	console.log("getting user");
+	getMyProfile(user=>{
+		let $form = $('.updateProfileForm');
+		$('.myProfile').hide();
+		$form.show();
+		$form.find('[name=firstName]').val(user.firstName);
+		$form.find('[name=lastName]').val(user.lastName);
+		$form.find('[name=city]').val(user.city);
+		$form.find('[name=zipcode]').val(user.zipcode);
+		console.log("that other one too");	
+	})
+}
+
+function registerUserInfoUpdateForm(){
+	$('#userInfoUpdate').submit(saveUpdateProfile);
+}
+
+function saveUpdateProfile(event){
+	event.preventDefault();
+	let userId = localStorage.getItem('userId');
+	let $form = $('.updateProfileForm');
+	let userData = {
+		//form uses jquery to get form element, calling find on form to find chil elements
+		firstName: $form.find('[name=firstName]').val(),
+		lastName: $form.find('[name=lastName]').val(),
+		city: $form.find('[name=city]').val(),
+		zipcode: $form.find('[name=zipcode]').val(),
+	};
+	console.log(userData);
+	$.ajax({
+		type: 'PUT',
+		url: `/users/${userId}`,
+		beforeSend: function(xhr) {
+    	xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('authToken'));
+    },
+		data: JSON.stringify(userData),
+		success: loadMyProfile, 
+		dataType: 'json',
+		contentType: 'application/json'
+	});
+}
+
 
 /*
 function handleBookSearch(){
@@ -327,14 +374,3 @@ function handleBookSearch(){
 });
 }
 */
-
-//renders the profile cards of users who have searched book in their library. //will show search results on a map. User profile appear nest to house icon where user lives, with message saying how many copies of book are available, whether user is loaning or gifting, and an option to message them.
-function renderProfileCards() {
-	
-}
-
-
-//when clicked, takes user to their profile page
-function userProfile(){
-
-}

@@ -118,6 +118,21 @@
           </form>
         </div>
 
+         <div class="updateProfileForm">
+          <h1>User Information</h1>
+          <form action="#" id="userInfoUpdate" role="form">
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" required>
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" required>
+            <label for="city">City</label>
+            <input type="text" name="city" required>
+            <label for="zipcode">Zip Code</label>
+            <input type="text" name="zipcode" pattern="[0-9]{5}" required>
+            <button class="updateProfileButton" type="submit" role="button">Update!</button>
+          </form>
+        </div>
+
         <footer>
           <div class="credits">
             <p class="credits-icons">Book icons by
