@@ -231,8 +231,11 @@ function registerMyProfileButton(){
 	$('.myProfileButton').click(loadMyProfile);
 }
 
+//when page first loads, has event to pass on. after update, does not have an event attached, so the if is put there to catch it either way
 function loadMyProfile(event) {
-	event.preventDefault(); 
+	if (event != undefined) {
+		event.preventDefault();
+	} 
 	getMyProfile(renderMyProfile);
 };
 //data is passed from the API call to the function below, where map is applied to users
@@ -354,22 +357,4 @@ function saveUpdateProfile(event){
 }
 
 
-/*
-function handleBookSearch(){
-	$('.bookSearchTerm').click(event => {
-	  event.preventDefault();
-	  let searchTerm = {type: event.target.form.search.value}
-	  $.get('/users', searchTerm)
-	  .then(res => {
-	    if(!res.users.length) {
-	      $('.search-results-container').html("");
-	      const noDataMessage = 'Sorry, nobody has that book. Please try another search.';
-	      $('<p>').fadeIn().appendTo('.search-results-container').html(noDataMessage).attr('id', 'no-data-error');
-	    } else {
-	      renderTitleMatches(res);
-	      $('#search-form').reset();
-    }
-  });
-});
-}
-*/
+

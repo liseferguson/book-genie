@@ -233,15 +233,15 @@ router.put('/:id/library', jsonParser, (req, res) => {
 
 
 //updates user info in profile
-const jwtAuth = passport.authenticate('jwt', { session: false });
-router.put('/:id', jwtAuth, (req, res) => {
+//const jwtAuth = passport.authenticate('jwt', { session: false });
+router.put('/:id', jsonParser, (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     const err = new Error('The `id` is not valid');
     err.status = 400;
     return next(err);
   }
   let updatedProfile = {};
-  let updateableFields = ['firstName', 'lastName', 'city', 'zipcode'];
+  let updateableFields = ['firstName', 'lastName', 'city', 'zipcode', 'neighborhood'];
   console.log('req.body=', req.body);
   updateableFields.forEach(field => {
     if(field in req.body) {
