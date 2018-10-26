@@ -83,7 +83,7 @@ header {
 
 
 
-.signUpForm, .welcomePage, .searchResultsPage, .browseAllLibraries, .bookSearchForm {
+.signUpForm, .welcomePage, .searchResultsPage, .browseAllLibraries, .bookSearchForm, .updateProfileForm {
   display: none;
   margin-left: auto;
   margin-right: auto;
@@ -115,6 +115,12 @@ header {
   float: right;
   margin-right: 40px;
   margin-top: 70px;
+}
+
+label.required::before {
+  content: '*';
+  margin-right: 4px;
+  color: red;
 }
 
 .signUpButton, .browseLibrariesButton, .myProfileButton {
@@ -151,13 +157,12 @@ header {
 }
 
 .user-library-card {
- border: 3px solid black;
- height: 500px;
+ height: 700px;
  width: 750px;
+ margin-top: 40px;
  margin-left: auto;
  margin-right: auto;
- background-color: rgb(238, 174, 121);
- margin-bottom: 40px;
+ background-color: powderblue;
 }
 
 .user-library-card h2 {
@@ -185,7 +190,7 @@ header {
 
 }
 
-.update-profile-button {
+.button-to-update-info {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -193,9 +198,45 @@ header {
   margin-bottom: 10px;
   background-color:  rgb(71, 233, 141);
   border-radius: 5px;
-  border: 1px solid;
+  border: 1px solid black;
   box-shadow: 5px 5px;
   padding: 5px;
+}
+
+.updateProfileButton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color:  rgb(71, 233, 141);
+  border-radius: 5px;
+  border: 1px solid black;
+  box-shadow: 5px 5px;
+  padding: 5px;
+}
+
+.updateProfileForm {
+  border: 1px solid black;
+  background-color: powderblue;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.updateProfileForm label {
+  text-align: left;
+  display: block;
+  margin-left: 100px;
+}
+
+.updateProfileForm input {
+  display: block;
+  margin-left: 100px;
+  margin-bottom: 10px;
 }
 
 .book-stack-icon {
@@ -208,7 +249,7 @@ header {
   background-color: white;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: 500px;
   height: 300px;
   padding: 10px;
   overflow-y:auto;
@@ -265,9 +306,17 @@ header {
   margin-bottom: 10px;
 }
 
+/* supposed to make searched-for title appear in bold red font*/ 
+.matchedTitle {
+  color: red;
+  font-weight: bolder;
+  border: 2px red;
+}
+
 .login-error-message {
   width: 100%;
   color: red;
+  font-size: 50px;
   text-align: center;
   /* padding: 25px; */
 }

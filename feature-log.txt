@@ -1,12 +1,21 @@
 Current bugs:
-req bpdy undefined in update profile info 
+req body undefined in update profile info 
+need to save updated info and return to profile page
+make passwords match on sign-up
+make so when you hit home button, don't have to log in again
 
 To-dos:
-Add PUT request so user can update their info
+Only show libraries that have books in them in browse
+make wmail links connect to email interface
+Make fully accessible (run aXe)
+Make fully responsive
 
 Wish list features:
 Scroll to end of library when new book has been added
-Reset form field after book is added
 Make so user can't add same book twice
 Make search term not case-sensitive
+Add spell-check to book search forms
+Add auto-fill to book search forms
+Add author and genre information
+Return similar results if slightly misspelled or "the" left out of title
 

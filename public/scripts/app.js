@@ -76,6 +76,7 @@ function submitSignUpForm(){
 			email: $form.find('[name=email]').val(),
 			city: $form.find('[name=city]').val(),
 			zipcode: $form.find('[name=zipcode]').val(),
+			neighborhood: $form.find('[name=neighborhood]').val(),
 			password: $form.find('[name=password]').val()
 		};
 		//Make sure passwords match, then stop the page from loading farther if they do not.		
@@ -145,6 +146,8 @@ function renderAllLibraries(users){
 		if (userLibrary == ""){
 			userLibrary = '<li class="empty-library">This library is empty :(</li>'
 		}
+		//code below attempts to add class to searched for title so can style it different in library
+		$("[name=bookSearchTerm]").addClass("matchedTitle");
 		return  `
 		<div class="user-library-card">
 			<img src="https://image.flaticon.com/icons/svg/29/29302.svg" class="book-stack-icon">
@@ -153,7 +156,7 @@ function renderAllLibraries(users){
 			<h3 class="zipcode">${user.zipcode}</h3>
 			<a href="mailto:${user.email}?Subject=Book%20trade%20request%20from%20your%20neighbor%20on%20Book%20Genie" target="_top">Email ${user.firstName}</a>
 			<h3 class="userLibraryTitle"><span>${user.firstName}'s library</span></h3>
-			<ul class="userLibrary">${userLibrary}</ul>
+				<ul class="userLibrary">${userLibrary}</ul>
 		</div>   `
 	})
 	//	$('.welcomePage').hide();
@@ -182,11 +185,9 @@ function registerBookDeleteButton(){
 }
 
 function deleteBook(event){
-	console.log('got here!!!!!');
 	//takes attribute of data-bookId 
 	let bookId = $(this).attr('data-bookId');
 	let userId = localStorage.getItem('userId');
-	console.log(bookId);
 	$.ajax({
 			type: 'DELETE',
 			url: `/users/${userId}/library/${bookId}`,
@@ -223,12 +224,8 @@ function loadSearchResults(event) {
 		dataType: 'json',
 		contentType: 'application/json'
 	});
+	$("[name=bookSearchTerm]").addClass("matchedTitle");
 };
-
-//loads results of search
-function renderSearchResults(results){
-	console.log(results);		
-}
 
 function registerMyProfileButton(){
 	$('.myProfileButton').click(loadMyProfile);
@@ -251,7 +248,8 @@ function renderMyProfile(user){
 	<h2 class="email">${user.email}</h2>
 	<h3 class="city">${user.city}</h3>
 	<h3 class="zipcode">${user.zipcode}</h3>
-	<button type="button" role="button" class="update-profile-button">Update Information</button>
+	<h3 class="neighborhood">${user.neighborhood}</h3>
+	<button type="button" role="button" class="button-to-update-info">Update Information</button>
 	</div>  
 
 	<div class="user-library-card">
@@ -303,16 +301,16 @@ function updateMyLibrary(event){
 			dataType: 'json',
 			contentType: 'application/json'
 		});
+	document.getElementById("addBook").reset();
 }
 
 function registerEditProfileButton(){
-	$('.update-profile-button').click(loadEditProfilePage);
+	$('.button-to-update-info').click(loadEditProfilePage);
 	console.log("yes it is");
 }
 
 function loadEditProfilePage(event){
 	event.preventDefault();
-	console.log("getting user");
 	getMyProfile(user=>{
 		let $form = $('.updateProfileForm');
 		$('.myProfile').hide();
@@ -321,7 +319,7 @@ function loadEditProfilePage(event){
 		$form.find('[name=lastName]').val(user.lastName);
 		$form.find('[name=city]').val(user.city);
 		$form.find('[name=zipcode]').val(user.zipcode);
-		console.log("that other one too");	
+		$form.find('[name=neighborhood]').val(user.neighborhood);	
 	})
 }
 
@@ -339,6 +337,7 @@ function saveUpdateProfile(event){
 		lastName: $form.find('[name=lastName]').val(),
 		city: $form.find('[name=city]').val(),
 		zipcode: $form.find('[name=zipcode]').val(),
+		neighborhood: $form.find('[name=neighborhood]').val()
 	};
 	console.log(userData);
 	$.ajax({

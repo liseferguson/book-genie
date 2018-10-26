@@ -19,6 +19,7 @@ const userSchema = mongoose.Schema({
   lastName: { type: String, required: true },
   password: { type: String, required: true , minlength: 5, maxlength: 200 },
   city: { type: String, required: true },
+  neighborhood: { type: String, required: false },
   zipcode: { type: Number, required: true },
   email: { type: String, required: true, unique: true, lowercase: true },
   library: { type: [bookSchema], required: false, unique: false}
@@ -33,6 +34,7 @@ userSchema.methods.serialize = function() {
     email: this.email,
     city: this.city,
     zipcode: this.zipcode,
+    neighborhood: this.neighborhood,
     library: this.library.map(
         (book) => book.serialize()
       ),

@@ -151,13 +151,14 @@ router.post("/", jsonParser, (req, res) => {
   }
 //password has no default value
 
-  let {password, firstName = '', lastName = '', email = '', city = '', zipCode = ''} = req.body;
+  let {password, firstName = '', lastName = '', email = '', city = '', zipCode = '', neighborhood = ''} = req.body;
       // Username and password come in pre-trimmed, otherwise we throw an error before this
   firstName = firstName.trim();
   lastName = lastName.trim();
   email = email.trim();
   city = city.trim();
   zipCode = zipCode.trim();
+  neighborhood = neighborhood.trim();
   
   User
   .find({ email: req.body.email })
@@ -180,6 +181,7 @@ router.post("/", jsonParser, (req, res) => {
         email: req.body.email,
         city: req.body.city,
         zipcode: req.body.zipcode,
+        neighborhood: req.body.neighborhood,
         library: req.body.library
       });
     })
