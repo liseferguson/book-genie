@@ -9,7 +9,19 @@ $(function() {
 	registerBookSearchButton();
 	registerUpdateLibraryButton();
 	registerUserInfoUpdateForm();
+	toHomePage();
 });
+
+
+function toHomePage(){
+	$('.header').click(function(event){
+	event.preventDefault();
+	if (localStorage.authToken){
+		//window.location.href = "/";
+		getMyProfile();
+	}
+	});
+}
 
 //generic function that gets profile and calls callback funciton when done
 function getMyProfile(callback) {
@@ -79,10 +91,29 @@ function submitSignUpForm(){
 			neighborhood: $form.find('[name=neighborhood]').val(),
 			password: $form.find('[name=password]').val()
 		};
-		//Make sure passwords match, then stop the page from loading farther if they do not.		
-		if ('[password]' !== '[password2]'){
+
+		//Make sure passwords match, then stop the page from loading farther if they do not.
+
+		//var password = document.getElementById("password")
+  // confirm_password = document.getElementById("password2");
+
+/*function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+*/
+		let password = $form.find('[name=password]').val();
+		let password2 = $form.find('[name=password2]').val();
+		if (password !== password2){
 			$('.password-mismatch-error-message-container').html("");
-			$('<p>').appendTo('.password-mismatch-message-container').addClass('login-error-message').html('Passwords much match');
+			$('<p>').appendTo('.password-mismatch-message-container').addClass('login-error-message').html('Passwords must.userLibrary match');
+		return;
 		}
 		$.ajax({
 			type: 'POST',
@@ -309,7 +340,6 @@ function updateMyLibrary(event){
 
 function registerEditProfileButton(){
 	$('.button-to-update-info').click(loadEditProfilePage);
-	console.log("yes it is");
 }
 
 function loadEditProfilePage(event){
@@ -324,6 +354,7 @@ function loadEditProfilePage(event){
 		$form.find('[name=zipcode]').val(user.zipcode);
 		$form.find('[name=neighborhood]').val(user.neighborhood);	
 	})
+	$('.updateProfileForm').show();
 }
 
 function registerUserInfoUpdateForm(){
@@ -354,6 +385,7 @@ function saveUpdateProfile(event){
 		dataType: 'json',
 		contentType: 'application/json'
 	});
+	$('.updateProfileForm').hide();
 }
 
 

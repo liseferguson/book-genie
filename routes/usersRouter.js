@@ -86,8 +86,6 @@ function filterUsersByTitle(users, title){
 
 
 //for when user has created a new profile
-
-
 router.post("/", jsonParser, (req, res) => {
 	const requiredFields = ['firstName', 'lastName','password', 'email', 'city', 'zipcode'];
 	const missingField = requiredFields.find(field => !(field in req.body));

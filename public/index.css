@@ -83,7 +83,7 @@ header {
 
 
 
-.signUpForm, .welcomePage, .searchResultsPage, .browseAllLibraries, .bookSearchForm, .updatedProfileForm {
+.signUpForm, .welcomePage, .searchResultsPage, .browseAllLibraries, .bookSearchForm, .updateProfileForm {
   display: none;
   margin-left: auto;
   margin-right: auto;

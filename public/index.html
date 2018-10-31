@@ -24,7 +24,7 @@
 
     <header class="header">
       <section class="titlePage">  
-        <h1 class="App-title" ><img src="https://bit.ly/2xxIVVG" alt="book icon"><a href="index.html" class="book-genie-logo">      Book Genie      </a><img src="https://bit.ly/2xxIVVG" alt="book icon"></h1>  
+        <h1 class="App-title"><img src="https://bit.ly/2xxIVVG" alt="book icon">      Book Genie      <img src="https://bit.ly/2xxIVVG" alt="book icon"></h1>  
       </section>
     </header>
 
@@ -55,7 +55,7 @@
 
         <div class="signUpForm">
           <h1>Sign up to join the Book Genie community</h1>
-          <div  class="password-mismatch-error-message-container"></div>
+          <div  class="password-mismatch-message-container"></div>
           <div  class="existing-user-error-message-container"></div>
           <img src ="/images/avatars/question.png" class="unknownTag">
           <form action="#" id="userInfo" role="form">
@@ -76,6 +76,7 @@
             <label for="password2" class="required">Re-Enter Password</label>
             <input type="password" name="password2" required>
             <button class="signUpButton" type="submit" role="button">Sign Up!</button>
+
           </form>
         </div>
 
@@ -108,8 +109,7 @@
         </div>  
 
         <div class="myProfile">
-          <div class="user-info-card-container">
-          </div>
+          <div class="user-info-card-container"></div>
           <form action="#" id="addBook" role="form">
             <div class="existing-title-error-message-container"></div>
             <label for="addBook">Enter a title</label>
@@ -120,19 +120,19 @@
 
          <div class="updateProfileForm">
           <h1>Update your info?</h1>
-          <form action="#" id="userInfoUpdate" role="form">
-            <label for="firstName">First Name</label>
-            <input type="text" name="firstName" required>
-            <label for="lastName">Last Name</label>
-            <input type="text" name="lastName" required>
-            <label for="city">City</label>
-            <input type="text" name="city" required>
-            <label for="zipcode">Zip Code</label>
-            <input type="text" name="zipcode" pattern="[0-9]{5}" required>
-            <label for="neighborhood">Neighborhood</label>
-            <input type="text" name="neighborhood">
-            <button class="updateProfileButton" type="submit" role="button">Update!</button>
-          </form>
+            <form action="#" id="userInfoUpdate" role="form">
+              <label for="firstName">First Name</label>
+              <input type="text" name="firstName" required>
+              <label for="lastName">Last Name</label>
+              <input type="text" name="lastName" required>
+              <label for="city">City</label>
+              <input type="text" name="city" required>
+              <label for="zipcode">Zip Code</label>
+              <input type="text" name="zipcode" pattern="[0-9]{5}" required>
+              <label for="neighborhood">Neighborhood</label>
+              <input type="text" name="neighborhood">
+              <button class="updateProfileButton" type="submit" role="button">Update!</button>
+            </form>
         </div>
 
         <footer>

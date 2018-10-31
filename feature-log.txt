@@ -1,11 +1,9 @@
 Current bugs:
-req body undefined in update profile info 
-need to save updated info and return to profile page
-make passwords match on sign-up
+
 make so when you hit home button, don't have to log in again
 
 To-dos:
-Only show libraries that have books in them in browse
+Only show libraries that have books in them in browser
 make wmail links connect to email interface
 Make fully accessible (run aXe)
 Make fully responsive
