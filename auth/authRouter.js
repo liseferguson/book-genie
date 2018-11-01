@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 
 const { JWT_SECRET, JWT_EXPIRY } = require('../config');
+//router helps set up what endpoints are, routes request for incoming HTTP requests 
 const router = express.Router();
 
 

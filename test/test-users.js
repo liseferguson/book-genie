@@ -14,12 +14,12 @@ const {TEST_PROD_DATABASE_URL, PORT} = require('../config');
 chai.use(chaiHttp);
 
 const { User } = require('../models');
-
+/*
 function tearDownDb() {
   console.warn('Deleting database');
   return mongoose.connection.dropDatabase();
 }
-
+*/
 function addUser(user){
 	return User.create(user);
 }
