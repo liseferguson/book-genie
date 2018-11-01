@@ -12,14 +12,15 @@ $(function() {
 	toHomePage();
 });
 
-
+//HALP!
 function toHomePage(){
 	$('.header').click(function(event){
 	event.preventDefault();
 	if (localStorage.authToken){
-		//window.location.href = "/";
-		getMyProfile();
-	}
+		getMyProfile(renderMyProfile);
+	} else {
+		window.location.href = "/";
+		}
 	});
 }
 
@@ -49,7 +50,6 @@ function handleSignInForm(){
 			url: '/auth/login',
 			data: JSON.stringify(userData),
 			success: function(res) {
-				console.log(res);
 				localStorage.setItem('authToken', res.authToken);
 				localStorage.setItem('userId', res.user.id);
 				$('.userCredentials').hide();
@@ -128,7 +128,6 @@ confirm_password.onkeyup = validatePassword;
 				$('<h1>').appendTo('.welcomePage').addClass('create-account-success-message').html(`Welcome to Book Genie, ${userData.firstName}!`); 
 			},
 			error: function(res) {
-				console.log(res);
 				//window.alert(res.responseText);
 				$('#login-user').hide();
 				$('.login-error-message').remove();
@@ -373,7 +372,6 @@ function saveUpdateProfile(event){
 		zipcode: $form.find('[name=zipcode]').val(),
 		neighborhood: $form.find('[name=neighborhood]').val()
 	};
-	console.log(userData);
 	$.ajax({
 		type: 'PUT',
 		url: `/users/${userId}`,

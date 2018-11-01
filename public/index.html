@@ -110,12 +110,16 @@
 
         <div class="myProfile">
           <div class="user-info-card-container"></div>
-          <form action="#" id="addBook" role="form">
-            <div class="existing-title-error-message-container"></div>
-            <label for="addBook">Enter a title</label>
-            <input type="text" name="title" required>
-            <button type="submit" class="addBookToLibrary" role="button">Add book!</button>
-          </form>
+            <div>
+            <form action="#" id="addBook" role="form">
+              <fieldset name="manage-books" class="manage-books">
+              <div class="existing-title-error-message-container"></div>
+              <label for="addBook">Enter a title</label>
+              <input type="text" name="title" required>
+              <button type="submit" class="addBookToLibrary" role="button">Add book!</button>
+            </fieldset>
+            </form>
+          </div>        
         </div>
 
          <div class="updateProfileForm">

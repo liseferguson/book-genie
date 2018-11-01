@@ -23,6 +23,10 @@ header {
   margin-right: auto;
 }
 
+header:hover {
+  cursor: pointer;
+}
+
 .book-genie-logo {
   text-decoration: none;
   color: black;
@@ -157,12 +161,13 @@ label.required::before {
 }
 
 .user-library-card {
- height: 700px;
+ /*height: 700px; */
  width: 750px;
  margin-top: 40px;
  margin-left: auto;
  margin-right: auto;
  background-color: powderblue;
+ border-right: 1px solid black;
 }
 
 .user-library-card h2 {
@@ -182,7 +187,7 @@ label.required::before {
   border: 1px solid black;
   background-color: powderblue;
   width: 750px;
-  height: 700px;
+  /*height: 700px; */
   margin-top: 40px;
   margin-bottom: 40px;
   margin-left: auto;
