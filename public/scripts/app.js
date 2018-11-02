@@ -10,6 +10,7 @@ $(function() {
 	registerUpdateLibraryButton();
 	registerUserInfoUpdateForm();
 	toHomePage();
+	$(document).scrollTop(0);
 });
 
 //HALP!
@@ -17,7 +18,9 @@ function toHomePage(){
 	$('.header').click(function(event){
 	event.preventDefault();
 	if (localStorage.authToken){
-		getMyProfile(renderMyProfile);
+		//getMyProfile(renderMyProfile);
+	$('.welcomePage').show();
+	$('.myProfile').hide();
 	} else {
 		window.location.href = "/";
 		}
@@ -176,8 +179,6 @@ function renderAllLibraries(users){
 		if (userLibrary == ""){
 			userLibrary = '<li class="empty-library">This library is empty :(</li>'
 		}
-		//code below attempts to add class to searched for title so can style it different in library
-		$("[name=bookSearchTerm]").addClass("matchedTitle");
 		return  `
 		<div class="user-library-card">
 			<img src="https://image.flaticon.com/icons/svg/29/29302.svg" class="book-stack-icon">
@@ -254,7 +255,6 @@ function loadSearchResults(event) {
 		dataType: 'json',
 		contentType: 'application/json'
 	});
-	$("[name=bookSearchTerm]").addClass("matchedTitle");
 };
 
 function registerMyProfileButton(){

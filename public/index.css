@@ -166,7 +166,9 @@ label.required::before {
  margin-top: 40px;
  margin-left: auto;
  margin-right: auto;
+ padding-bottom: 20px;
  background-color: powderblue;
+ border-left: 1px solid black;
  border-right: 1px solid black;
 }
 
@@ -312,17 +314,14 @@ label.required::before {
   margin-bottom: 10px;
 }
 
-/* supposed to make searched-for title appear in bold red font*/ 
-.matchedTitle {
-  color: red;
-  font-weight: bolder;
-  border: 2px red;
-}
-
 .login-error-message {
   width: 100%;
   color: red;
   font-size: 50px;
   text-align: center;
   /* padding: 25px; */
+}
+
+fieldset {
+  border: none;
 }
