@@ -27,6 +27,10 @@ header:hover {
   cursor: pointer;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .book-genie-logo {
   text-decoration: none;
   color: black;

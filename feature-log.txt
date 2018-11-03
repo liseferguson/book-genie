@@ -1,5 +1,4 @@
 Current bugs:
-make so when you hit home button, don't have to log in again
 make sure I have the minimum required tests and are passing
 don't add books that are already in library
 
