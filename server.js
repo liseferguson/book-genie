@@ -45,7 +45,6 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 
 //creates a static web server, servers static assets
 app.use(express.static('public'));
-app.listen(process.env.PORT || 8080);
 
 
 // Parse request body
@@ -56,12 +55,6 @@ app.use('*', function(req, res) {
   res.status(404).json({message: 'Sorry, Not Found'});
 })
 
-// Custom 404 Not Found route handler
-app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
 
 // closeServer needs access to a server object, but that only
 // gets created when `runServer` runs, so we declare `server` here

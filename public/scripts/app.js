@@ -10,7 +10,6 @@ $(function() {
 	registerUpdateLibraryButton();
 	registerUserInfoUpdateForm();
 	toHomePage();
-	$(document).scrollTop(0);
 });
 
 //HALP!
@@ -283,6 +282,7 @@ function renderMyProfile(user){
 	<h3 class="zipcode">${user.zipcode}</h3>
 	<h3 class="neighborhood">${user.neighborhood}</h3>
 	<button type="button" role="button" class="button-to-update-info">Update Information</button>
+	<button type="button" class="browseLibrariesButton">Browse All Libraries</button>
 	</div>  
 
 	<div class="user-library-card">
