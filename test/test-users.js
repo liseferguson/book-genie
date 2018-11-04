@@ -1,6 +1,7 @@
 'use strict';
 
-
+//redo tests for authentication
+//matchendpoints to what is currently coming back
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const expect = require('chai').expect;
@@ -91,7 +92,7 @@ describe('/users endpoints', function() {
         .then(function(res) {   
           expect(res).to.have.status(201);
           expect(res.body).to.be.an("object");
-          expect(res.body).to.include.keys("firstName", "lastName", 'password', "email", "city", "zipcode");
+          expect(res.body).to.include.keys('authToken', "email", "userId");
           expect(res.body.email).to.equal(newUser.email);
       });
       });
@@ -103,7 +104,7 @@ describe('/users endpoints', function() {
         .then(function(res) {   
           expect(res).to.have.status(201);
           expect(res.body).to.be.an("object");
-          expect(res.body).to.include.keys("firstName", "lastName", 'password', "email", "city", "zipcode");
+          expect(res.body).to.include.keys('authToken', "email", "userId");
           expect(res.body.email).to.equal(otherUser.email);
       });
       });
@@ -115,7 +116,7 @@ describe('/users endpoints', function() {
         .then(function(res) {   
           expect(res).to.have.status(201);
           expect(res.body).to.be.an("object");
-          expect(res.body).to.include.keys("firstName", "lastName", 'password', "email", "city", "zipcode");
+          expect(res.body).to.include.keys('authToken', "email", "userId");
           expect(res.body.email).to.equal(otherOtherUser.email);
       });
       });
@@ -134,7 +135,8 @@ describe('/users endpoints', function() {
         .then(function(res){
           expect(res).to.have.status(200);
           //deep equal does a full property name and value match, instead of object identity match, which i got before deep equal
-          expect(res.body).to.deep.equal([newUser, otherUser, otherOtherUser]);
+          expect(res.body).to.have.length(3);
+          expect(res.body[0]).to.include.keys('firstName', 'lastName', 'email', 'city', 'zipcode');
         })
       })
 
@@ -149,7 +151,8 @@ describe('/users endpoints', function() {
           .get('/users?title=Book3')
           .then(function(res){
           //deep equal does a full property name and value match, instead of object identity match, which i got before deep equal
-            expect(res.body).to.deep.equal([newUser, otherUser]);
+            expect(res.body).to.have.length(2);
+            expect(res.body[0]).to.include.keys('firstName', 'lastName', 'email', 'city', 'zipcode');
           })
         })
       })
@@ -188,12 +191,12 @@ describe('/users endpoints', function() {
     describe('DELETE /users', function(){
 
       it('should delete a book from a user library', function(){
-        User.library.findById()
+        User.findOne()
       //find book by its given id
-          .then(function(){
+          .then(function(user){
             return chai.request(app)
             //endpoint for deleted book id?
-            .delete(`/users/${user.id}/library/${title.id}`)
+            .delete(`/users/${user.id}/library/${user.library[0]._id}`)
           })
           .then(function(res) {
             expect(res).to.have.status(204);

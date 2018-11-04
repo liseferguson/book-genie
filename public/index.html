@@ -20,9 +20,9 @@
 </head>
 
 <body>
-  <main role="main" aria-live="assertive">
+  <main aria-live="assertive">
 
-    <header class="header">
+    <header>
       <section class="titlePage">  
         <h1 class="App-title"><img src="https://bit.ly/2xxIVVG" alt="book icon">      Book Genie      <img src="https://bit.ly/2xxIVVG" alt="book icon"></h1>  
       </section>
@@ -30,15 +30,13 @@
 
     <div class="signInForm">
       <h1>A neighborhood book trade cooperative. Borrow books from neighbors, and loan out or gift your own.</h1>
-      <form class="userCredentials" role="form">
+      <form class="userCredentials">
         <fieldset name="user-info" class="user-info">
           <div  class="error-message-container"></div>
           <div class="email-row"></div>
-          <label for="email">Email Address:</label>
-          <input type="email" class="email-entry" required value="Tester@email.com">
+          <label for="email">Email Address:<input type="email" class="email-entry" required value="Tester@email.com"></label>   
           <div class="password-row"></div>
-          <label for="password">Password:</label>
-          <input type="password" class="password-entry" required value="password1">
+          <label for="password">Password:<input type="password" class="password-entry" required value="password1"></label>          
         <div class="homepage-buttons-container">
           <input class="existing-user" type = "submit" value = "Login"/>
           <p>OR</p>
@@ -58,7 +56,7 @@
           <div  class="password-mismatch-message-container"></div>
           <div  class="existing-user-error-message-container"></div>
           <img src ="/images/avatars/question.png" class="unknownTag">
-          <form action="#" id="userInfo" role="form">
+          <form action="#" id="userInfo">
             <label for="firstName" class="required">First Name</label>
             <input type="text" name="firstName" required>
             <label for="lastName" class="required">Last Name</label>
@@ -75,21 +73,20 @@
             <input type="password" name="password" required>
             <label for="password2" class="required">Re-Enter Password</label>
             <input type="password" name="password2" required>
-            <button class="signUpButton" type="submit" role="button">Sign Up!</button>
-
+            <button class="signUpButton" type="submit">Sign Up!</button>
           </form>
         </div>
 
         <div class="welcomePage">
           <h1></h1>
           <div class="welcome-nametag"></div>
-          <form action="#" id="searchForm" role="form">
+          <form action="#" id="searchForm">
             <label for="bookSearchForm">Enter a title</label>
             <input type="text" name="bookSearchTerm" required>
-            <button type="submit" class="title-search-button" role="button">Go!</button>
+            <button type="submit" class="title-search-button">Go!</button>
           </form>
-          <button type="button" class="browseLibrariesButton" role="button">Browse All Libraries</button>
-          <button type="button" class="myProfileButton" role="button">My Profile</button>
+          <button type="button" class="browseLibrariesButton">Browse All Libraries</button>
+          <button type="button" class="myProfileButton">My Profile</button>
         </div>
 
         <div class="searchResultsPage">
@@ -97,10 +94,9 @@
           <div class="no-results-error-message-container"></div>
           <div class="search-results-container"></div>
           <h2>Or, try another search</h2>
-          <form action="#" class="bookSearchForm" role="form">
-            <label for="bookSearchForm">Enter a title</label>
-            <input type="text" class="searchTerm" required>
-            <button type="submit" class="class="bookSearchTerm" role="button">Go!</button>
+          <form action="#" class="bookSearchForm">
+            <label for="bookSearchForm">Enter a title<input type="text" class="searchTerm" required></label>
+            <button type="submit" class="class="bookSearchTerm">Go!</button>
           </form>
         </div>
 
@@ -111,12 +107,11 @@
         <div class="myProfile">
           <div class="user-info-card-container"></div>
             <div>
-            <form action="#" id="addBook" role="form">
+            <form action="#" id="addBook">
               <fieldset name="manage-books" class="manage-books">
               <div class="existing-title-error-message-container"></div>
-              <label for="addBook">Enter a title</label>
-              <input type="text" name="title" required>
-              <button type="submit" class="addBookToLibrary" role="button">Add book!</button>
+              <label for="addBook">Enter a title<input type="text" name="title" required></label>
+              <button type="submit" class="addBookToLibrary">Add book!</button>
             </fieldset>
             </form>
           </div>        
@@ -124,7 +119,7 @@
 
          <div class="updateProfileForm">
           <h1>Update your info?</h1>
-            <form action="#" id="userInfoUpdate" role="form">
+            <form action="#" id="userInfoUpdate">
               <label for="firstName">First Name</label>
               <input type="text" name="firstName" required>
               <label for="lastName">Last Name</label>
@@ -135,7 +130,7 @@
               <input type="text" name="zipcode" pattern="[0-9]{5}" required>
               <label for="neighborhood">Neighborhood</label>
               <input type="text" name="neighborhood">
-              <button class="updateProfileButton" type="submit" role="button">Update!</button>
+              <button class="updateProfileButton" type="submit">Update!</button>
             </form>
         </div>
 
