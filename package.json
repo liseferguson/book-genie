@@ -4,9 +4,14 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.0.12",
     "morgan": "^1.9.0",
-    "mongoose": "^5.0.12"
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
@@ -17,6 +22,6 @@
     "test": "mocha --exit",
     "start": "node server.js"
   },
-  "author": "",
+  "author": "lise ferguson",
   "license": "ISC"
 }
