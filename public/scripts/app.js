@@ -54,7 +54,9 @@ function handleSignInForm(){
 			success: function(res) {
 				localStorage.setItem('authToken', res.authToken);
 				localStorage.setItem('userId', res.user.id);
+
 				$('.userCredentials').hide();
+				$('.showAllLibraries').hide();
 				$('.welcomePage').show();
 				$('<p>').appendTo('.welcome-nametag').addClass('welcome-back-message').html(`Welcome back, ${res.user.firstName} !`);
 			},
