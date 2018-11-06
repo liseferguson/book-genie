@@ -191,7 +191,8 @@ function renderAllLibraries(users){
 	})
 	//	$('.welcomePage').hide();
 $('.showAllLibraries').show();
-$('.all-libraries-container').html(libraryCard); 
+$('.all-libraries-container').html(libraryCard);
+$('.all-libraries-container').show(); 
 	}
 }
 
