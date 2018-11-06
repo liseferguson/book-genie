@@ -152,7 +152,7 @@ confirm_password.onkeyup = validatePassword;
 //registers a click handler that loads all libraries from the API
 
 function registerBrowseLibrariesButton(){
-	$('.main-container').click('.browseLibrariesButton',loadAllLibraries);
+	$('.browseLibrariesButton').click(loadAllLibraries);
 }
 
 function loadAllLibraries() {
@@ -191,8 +191,7 @@ function renderAllLibraries(users){
 	})
 	//	$('.welcomePage').hide();
 $('.showAllLibraries').show();
-$('.all-libraries-container').html(libraryCard);
-$('.all-libraries-container').show(); 
+$('.all-libraries-container').html(libraryCard); 
 	}
 }
 
