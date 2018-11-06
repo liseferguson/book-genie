@@ -1,5 +1,5 @@
 Current bugs:
-make sure I have the minimum required tests and are passing
+get button to home page working
 get browseAllLibraries button working from profile page
 don't add books that are already in library
 get rid of commented out code

@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 
 
 const {app, runServer, closeServer} = require('../server');
-const {TEST_PROD_DATABASE_URL, PORT} = require('../config');
+const {TEST_DATABASE_URL, PORT} = require('../config');
 
 chai.use(chaiHttp);
 
@@ -75,7 +75,7 @@ describe('/users endpoints', function() {
     });
 
     before(function() {
-      return runServer(TEST_PROD_DATABASE_URL, PORT);
+      return runServer(TEST_DATABASE_URL, PORT);
     });
 
     after(function() {
