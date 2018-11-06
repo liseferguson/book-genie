@@ -152,7 +152,7 @@ confirm_password.onkeyup = validatePassword;
 //registers a click handler that loads all libraries from the API
 
 function registerBrowseLibrariesButton(){
-	$('.browseLibrariesButton').click(loadAllLibraries);
+	$('.main-container').click('.browseLibrariesButton',loadAllLibraries);
 }
 
 function loadAllLibraries() {
