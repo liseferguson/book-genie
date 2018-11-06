@@ -1,7 +1,7 @@
 'use strict';
 
 //production (professional) database, local environment
-exports.DATABASE_URL = process.env.DATABASE_URL || 'mogodb://local:27017/bookgenie';
+exports.DATABASE_URL = process.env.DATABASE_URL || 'mongodb://localhost:27017/bookgenie';
 
 exports.PORT = process.env.PORT || 8081;
 
