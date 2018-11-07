@@ -17,7 +17,6 @@ function toHomePage(){
 	$('.header').click(function(event){
 	event.preventDefault();
 	if (localStorage.authToken){
-		//getMyProfile(renderMyProfile);
 	$('.welcomePage').show();
 	$('.myProfile').hide();
 	} else {
@@ -28,7 +27,7 @@ function toHomePage(){
 
 //generic function that gets profile and calls callback funciton when done
 function getMyProfile(callback) {
-	//gets userId from localStorage 
+//gets userId from localStorage 
 	let userId = localStorage.getItem('userId');
 	$.ajax({
 		type: 'GET',
@@ -86,7 +85,7 @@ function submitSignUpForm(){
 		event.preventDefault();
 		let $form = $('.signUpForm');
 		let userData = {
-			//form uses jquery to get form element, calling find on form to find chil elements
+//form uses jquery to get form element, calling find on form to find chil elements
 			firstName: $form.find('[name=firstName]').val(),
 			lastName: $form.find('[name=lastName]').val(),
 			email: $form.find('[name=email]').val(),
@@ -96,22 +95,8 @@ function submitSignUpForm(){
 			password: $form.find('[name=password]').val()
 		};
 
-		//Make sure passwords match, then stop the page from loading farther if they do not.
+//Make sure passwords match, then stop the page from loading farther if they do not.
 
-		//var password = document.getElementById("password")
-  // confirm_password = document.getElementById("password2");
-
-/*function validatePassword(){
-  if(password.value != confirm_password.value) {
-    confirm_password.setCustomValidity("Passwords Don't Match");
-  } else {
-    confirm_password.setCustomValidity('');
-  }
-}
-
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
-*/
 		let password = $form.find('[name=password]').val();
 		let password2 = $form.find('[name=password2]').val();
 		if (password !== password2){
@@ -132,7 +117,6 @@ confirm_password.onkeyup = validatePassword;
 				$('<h1>').appendTo('.welcomePage').addClass('create-account-success-message').html(`Welcome to Book Genie, ${userData.firstName}!`); 
 			},
 			error: function(res) {
-				//window.alert(res.responseText);
 				$('#login-user').hide();
 				$('.login-error-message').remove();
 				$('.existing-user-error-message-container').html("");
@@ -145,9 +129,6 @@ confirm_password.onkeyup = validatePassword;
 
 	});
 }
-
-
-
 
 //renders all user libraries (no title filter) onto the page
 //passing renderAllLibraries as a callback to do something with the response data
@@ -175,7 +156,7 @@ function renderAllLibraries(users){
     $('.showAllLibraries').show();
    } else {
 		let libraryCard = users.map(user => {
-		//joining array of strings (books) in library that are <li> items so that can interpolate it
+//joining array of strings (books) in library that are <li> items so that can interpolate it
 		let userLibrary = renderUserLibrary(user.library).join("");
 		if (userLibrary == ""){
 			userLibrary = '<li class="empty-library">This library is empty :(</li>'
@@ -191,7 +172,6 @@ function renderAllLibraries(users){
 				<ul class="userLibrary">${userLibrary}</ul>
 		</div>   `
 	})
-	//	$('.welcomePage').hide();
 $('.showAllLibraries').show();
 $('.all-libraries-container').html(libraryCard); 
 	}
