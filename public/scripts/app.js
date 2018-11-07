@@ -21,6 +21,7 @@ function toHomePage(){
 	$('.myProfile').hide();
 	} else {
 		window.location.href = "/";
+		$('.welcomePage').hide();
 		}
 	});
 }
