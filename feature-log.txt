@@ -1,15 +1,15 @@
 Current bugs:
-get button to home page working
 get browseAllLibraries button working from profile page
 don't add books that are already in library
-get rid of commented out code
-get rid of console.logs
+
 
 To-dos:
-make email links connect to email interface
+make sure email links connect to email interface
+change name of heroku link, update in git remote and config file
 
 
 Wish list features:
+Add a "back" button to "edit profile" page
 Only show libraries that have books in them in browser
 Scroll to end of library when new book has been added
 Scroll to top of page on reload (currently goes to bottom where there is nothing)
