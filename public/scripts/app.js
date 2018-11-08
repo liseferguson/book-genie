@@ -259,19 +259,22 @@ function renderMyProfile(user){
 	}
 	$('.user-info-card-container').html(`
 	<div class="user-profile-card">
-	<h1 class="userName">${user.firstName} ${user.lastName}</h1>
-	<h2 class="email">${user.email}</h2>
-	<h3 class="city">${user.city}</h3>
-	<h3 class="zipcode">${user.zipcode}</h3>
-	<h3 class="neighborhood">${user.neighborhood}</h3>
+		<h1 class="userName">${user.firstName} ${user.lastName}</h1>
+		<h2 class="email">${user.email}</h2>
+		<h3 class="city">${user.city}</h3>
+		<h3 class="zipcode">${user.zipcode}</h3>
+		<h3 class="neighborhood">${user.neighborhood}</h3>
 	</div>  
 
 	<div class="user-library-card">
-	<h3 class="userLibraryTitle"><span>${user.firstName}'s library</span></h3>
-	<ul class="userLibrary">${userLibrary}</ul>
-	<button type="button" role="button" class="button-to-update-info">Update Information</button>
-	<button type="button" class="browseLibrariesButton">Browse All Libraries</button>
+		<h3 class="userLibraryTitle"><span>${user.firstName}'s library</span></h3>
+		<ul class="userLibrary">${userLibrary}</ul>
 	</div> 
+
+	<div class="buttons">
+		<button type="button" role="button" class="button-to-update-info">Update Information</button>
+		<button type="button" class="browseLibrariesButton">Browse All Libraries</button>
+	</div>
 	`);
 	//call registerBookDeleteButton here instead of at top because books need to load to page first
 	registerBookDeleteButton();
