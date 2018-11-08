@@ -277,7 +277,7 @@ function renderMyProfile(user){
 	registerBookDeleteButton();
 	registerEditProfileButton();
 	$('.myProfile').show();
-	$('.all-libraries-container').hide();
+	$('.showAllLibraries').hide();
 	//$('.user-library-card').hide();
 }
 //HALP
