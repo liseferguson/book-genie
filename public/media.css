@@ -1,6 +1,13 @@
-@media only screen and (min-width: 320px){
+/* Mobile defaults */
+main {
+	width: 80%;
+	height: 80%;
+}
+
+/* Non-mobile */
+@media only screen and (min-width: 450px){
 	main {
-		width: 80%;
+		width: 100%;
 		height: 80%;
 	}
 }
