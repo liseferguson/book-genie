@@ -23,7 +23,9 @@ function toHomePage(){
 	$('.updateProfileForm').hide();
 	} else {
 		window.location.href = "/";
+		$('.signInForm').show();
 		$('.welcomePage').hide();
+		$('.signUpForm').hide();
 		}
 	});
 }
@@ -157,6 +159,7 @@ function renderAllLibraries(users){
     const noDataMessage = 'Sorry, nobody has that book. Please try another search.';
     $('<p>').appendTo('.all-libraries-container').addClass('login-error-message').html(noDataMessage);
     $('.showAllLibraries').show();
+    $('.myProfile').hide();
    } else {
 		let libraryCard = users.map(user => {
 //joining array of strings (books) in library that are <li> items so that can interpolate it

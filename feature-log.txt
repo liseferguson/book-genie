@@ -1,5 +1,5 @@
 Current bugs:
-get browseAllLibraries button working from profile page
+when user hits browseAllLibraries, 
 don't add books that are already in library
 
 
