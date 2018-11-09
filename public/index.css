@@ -135,15 +135,17 @@ label.required::before {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5%;
-  /*
-  margin-bottom: 5%;
-  */
+  margin-top: 5px;
+  margin-bottom: 5px;
   background-color:  rgb(71, 233, 141);
   border-radius: 5px;
   border: 1px solid;
   box-shadow: 5px 5px;
   padding: 5px;
+}
+
+.addBookToLibrary {
+  float: right;
 }
 
 .demo-container {
