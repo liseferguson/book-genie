@@ -7,7 +7,9 @@ BookGenie is an app that allows users to exchange books with others in their are
 
 Users can search for books by title in the home page search bar. If there is a match, the user with the title in their library is returned. The first user can look at their basic information and other books in their library, and contact them via email if they want to request to borrow the book.
 
-Users can also choose to browse the libraries of all other users in a scrollable, list-style format.
+Users can also choose to browse the libraries of all other users in their area. Hitting the "Browse All Libraries" button will produce a scrollable list of all other users who have books in their libraries, and the scrollable libraries themselves.
+
+The BookGenie logo at the top of the page is a clickable link that will redirect a user who is logged in back to the welcome page. If the user is not logged in (but is on the Sign Up page) and clicks the logo, they will be taken back to the login page.
 
 Technology used
 ===============
@@ -22,6 +24,8 @@ Technology used
 	<li>HTML</li>
 	<li>CSS </li>
 </ul>
+
+<p>Click to see the documentation</p>
 
 Login Page
 ==========

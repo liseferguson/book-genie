@@ -1,6 +1,6 @@
 Current bugs: 
-don't add books that are already in library
-API documentation?
+Don't add books that are already in library
+
 
 To-dos:
 make sure email links connect to email interface
@@ -8,6 +8,7 @@ change name of heroku link, update in git remote and config file
 
 
 Wish list features:
+Add a location check: "Sorry, there are currently no other BookGenie users in your area" if a user's city has no other users. Ultimately will only show other users if they are in the same city as the user.
 Add a "back" button to "edit profile" page
 Only show libraries that have books in them in browser
 Scroll to end of library when new book has been added

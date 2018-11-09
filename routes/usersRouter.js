@@ -20,7 +20,6 @@ const createAuthToken = function (user) {
   return new Promise(function (resolve, reject) {
     jwt.sign({ user }, JWT_SECRET, { expiresIn: JWT_EXPIRY }, function (err, authToken) {
       if (err) {
-        console.log(`createAuthToken: `+ err);
         return reject(err);
       }
       resolve(authToken);
@@ -30,13 +29,11 @@ const createAuthToken = function (user) {
 
 //returns all users to be scrollable, list-style, on one screen
 router.get('/', (req, res) => {
-	console.log("hey we made it");
   //where back end and front end meet
   let title = req.query.title;
 //returns all users who have a specified title that is searched for
 	User.find({$where: "this.library.length > 0"})
 	.then(users => {
-		console.log("made it again!");
     if (title !== undefined){
       users = filterUsersByTitle(users, title);
     } 
@@ -47,15 +44,12 @@ router.get('/', (req, res) => {
     );
   })
 	.catch(err => {
-		console.log("hey we messed up");
-		console.log(err);
 		res.status(500).json({ error: 'something went wrong'});
 	});
 });
 
 //returns specific user by id
 router.get('/:id', (req, res) => {
-  console.log("made it to router get?");
   User.findById(req.params.id)
   .then(user => {
     return res.json(user.serialize());
@@ -67,11 +61,9 @@ function filterUsersByTitle(users, title){
   let matchingUsers = [];
   for (let i = 0; i < users.length; i++){
     let user = users[i]
-    console.log(user);
     for (let j = 0; j < user.library.length; j++){
       //add user with matching title to output
       let foundTitle = user.library[j].title
-      console.log(title + '/' + foundTitle); 
       if (title == foundTitle){
         matchingUsers.push(user);
       //stop loop, stop looking through library if title found 
@@ -170,7 +162,6 @@ router.post("/", jsonParser, (req, res) => {
     return User.hashPassword(password);
     })//END OF USER.FIND
     .then (hash => {
-      console.log('creating user');
       return User
       .create({
         firstName: req.body.firstName,
@@ -185,7 +176,6 @@ router.post("/", jsonParser, (req, res) => {
     })
       // If there is no existing user, hash the password
       .then(user => {
-        console.log('creating authToken');
         return createAuthToken(user)
         .then(authToken => {
           return res.status(201).json({
@@ -196,7 +186,6 @@ router.post("/", jsonParser, (req, res) => {
         });
       })
       .catch(err => {
-        console.log('caught error' + err);
         // Forward validation errors on to the client, otherwise give a 500
         // error because something unexpected has happened
         if (err.reason === 'ValidationError') {
@@ -219,7 +208,6 @@ router.put('/:id/library', jsonParser, (req, res) => {
       user.library.push({title: req.body.title});
       user.save(err => {
         if (err) {
-          console.log(err);
           return res.status(err.code).json(err);
         }
         else {
@@ -240,7 +228,6 @@ router.put('/:id', jsonParser, (req, res) => {
   }
   let updatedProfile = {};
   let updateableFields = ['firstName', 'lastName', 'city', 'zipcode', 'neighborhood'];
-  console.log('req.body=', req.body);
   updateableFields.forEach(field => {
     if(field in req.body) {
       updatedProfile[field] = req.body[field];
@@ -263,14 +250,9 @@ router.put('/:id', jsonParser, (req, res) => {
 router.delete('/:userId/library/:bookId', (req, res) => {
   let userId = req.params.userId;
   let bookId = req.params.bookId;
-  console.log(userId);
-  console.log(bookId);
   User.update({_id: req.params.userId}, {$pull:{"library":{_id:req.params.bookId}}})
     .then(updateObject => {
-      console.log(updateObject);
-      console.log("another teapot");
         if (updateObject.nModified) {
-          console.log("im a good teapot");
           return res.status(204).end();
         }
         else {

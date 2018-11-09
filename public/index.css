@@ -272,6 +272,10 @@ label.required::before {
   overflow-y:auto;
 }
 
+.user-info-minicard {
+  height: 60px;
+}
+
 .empty-library {
   color: red;
 }
