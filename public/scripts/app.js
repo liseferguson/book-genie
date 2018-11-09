@@ -12,13 +12,15 @@ $(function() {
 	toHomePage();
 });
 
-//HALP!
+//When user clicks the BookGenie logo, they are redirected to the welcome page, if they are logged in. The other divs are hidden in case the user clicks the button while on that page. If they are not logged in, the button takes the user to the login page.
 function toHomePage(){
 	$('.header').click(function(event){
 	event.preventDefault();
 	if (localStorage.authToken){
 	$('.welcomePage').show();
 	$('.myProfile').hide();
+	$('.showAllLibraries').hide();
+	$('.updateProfileForm')hide();
 	} else {
 		window.location.href = "/";
 		$('.welcomePage').hide();
