@@ -158,7 +158,6 @@ function renderAllLibraries(users){
     $('.all-libraries-container').html("");
     const noDataMessage = 'Sorry, nobody has that book. Please try another search.';
     $('<p>').appendTo('.all-libraries-container').addClass('login-error-message').html(noDataMessage);
-    $('.showAllLibraries').show();
     $('.myProfile').hide();
    } else {
 		let libraryCard = users.map(user => {
@@ -180,6 +179,7 @@ function renderAllLibraries(users){
 	})
 $('.showAllLibraries').show();
 $('.all-libraries-container').html(libraryCard); 
+$('.myProfile').hide();
 	}
 }
 
