@@ -201,10 +201,6 @@ label.required::before {
   padding-bottom: 20px;
 }
 
-.buttons {
-  bottom: 0;
-}
-
 .button-to-update-info {
   display: block;
   margin-left: auto;

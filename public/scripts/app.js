@@ -270,11 +270,6 @@ function renderMyProfile(user){
 		<h3 class="userLibraryTitle"><span>${user.firstName}'s library</span></h3>
 		<ul class="userLibrary">${userLibrary}</ul>
 	</div> 
-
-	<div class="buttons">
-		<button type="button" role="button" class="button-to-update-info">Update Information</button>
-		<button type="button" class="browseLibrariesButton">Browse All Libraries</button>
-	</div>
 	`);
 	//call registerBookDeleteButton here instead of at top because books need to load to page first
 	registerBookDeleteButton();
