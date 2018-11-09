@@ -1,5 +1,4 @@
-Current bugs:
-when user hits browseAllLibraries, 
+Current bugs: 
 don't add books that are already in library
 API documentation?
 

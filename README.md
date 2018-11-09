@@ -28,6 +28,9 @@ Login Page
 
 <img src="/readme-images/home-screen.png" alt="screenshot of login screen"/>
 
+Profile Page
+============
+
 <img src="/readme-images/profile-page.png" alt="screenshot of profile page"/>
 
 

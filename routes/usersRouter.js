@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
   //where back end and front end meet
   let title = req.query.title;
 //returns all users who have a specified title that is searched for
-	User.find($where: "this.library.length > 0" )
+	User.find({$where: "this.library.length > 0"})
 	.then(users => {
 		console.log("made it again!");
     if (title !== undefined){
