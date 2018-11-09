@@ -136,7 +136,7 @@ label.required::before {
   margin-left: auto;
   margin-right: auto;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   background-color:  rgb(71, 233, 141);
   border-radius: 5px;
   border: 1px solid;

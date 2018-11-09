@@ -283,7 +283,7 @@ function renderMyProfile(user){
 	$('.showAllLibraries').hide();
 	//$('.user-library-card').hide();
 }
-//HALP
+
 function registerUpdateLibraryButton(){
 	$('.addBookToLibrary').click(updateMyLibrary);
 }

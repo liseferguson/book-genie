@@ -1,7 +1,7 @@
 BookGenie
----------
+=========
 
-See it live here: https://dashboard.heroku.com/apps/warm-lowlands-41210/settings
+See it live here: https://warm-lowlands-41210.herokuapp.com/
 
 BookGenie is an app that allows users to exchange books with others in their area. Users can create a profile with basic information (including: their name, zipcode, and neighborhood) and a library that they can list all of their books in. Books can be added and deleted as needed. 
 
@@ -10,16 +10,18 @@ Users can search for books by title in the home page search bar. If there is a m
 Users can also choose to browse the libraries of all other users in a scrollable, list-style format.
 
 Technology used
----------------
+===============
 
-JavaScript/ jQuery
-Node/Express
-Mongo/Mongoose
-Travis CI
-Heroku/mLab
-JWT/Passport
-HTML
-CSS 
+<ul>
+	<li>JavaScript/ jQuery</li>
+	<li>Node/Express</li>
+	<li>Mongo/Mongoose</li>
+	<li>Travis CI</li>
+	<li>Heroku/mLab</li>
+	<li>JWT/Passport</li>
+	<li>HTML</li>
+	<li>CSS </li>
+</ul>
 
 
 
