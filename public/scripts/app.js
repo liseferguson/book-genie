@@ -1,6 +1,9 @@
 "use strict"
 
 $(function() {
+	if (localStorage.authToken){
+		$('.sign-up-button').hide();
+	} 
 	buttonToSignUpForm();
 	submitSignUpForm();
 	registerBrowseLibrariesButton();
