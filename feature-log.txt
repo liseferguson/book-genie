@@ -1,7 +1,7 @@
 Current bugs:
 when user hits browseAllLibraries, 
 don't add books that are already in library
-
+API documentation?
 
 To-dos:
 make sure email links connect to email interface
