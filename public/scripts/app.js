@@ -20,7 +20,7 @@ function toHomePage(){
 	$('.welcomePage').show();
 	$('.myProfile').hide();
 	$('.showAllLibraries').hide();
-	$('.updateProfileForm')hide();
+	$('.updateProfileForm').hide();
 	} else {
 		window.location.href = "/";
 		$('.welcomePage').hide();
