@@ -1,7 +1,7 @@
 BookGenie
 =========
 
-<p>See it live here <a href='https://warm-lowlands-41210.herokuapp.com/'></a></p>
+<p>See it live here: https://warm-lowlands-41210.herokuapp.com/</p>
 
 BookGenie is an app that allows users to exchange books with others in their area. Users can create a profile with basic information (including: their name, zipcode, and neighborhood) and a library that they can list all of their books in. Books can be added and deleted as needed. 
 
@@ -25,8 +25,6 @@ Technology used
 	<li>CSS </li>
 </ul>
 
-<p>Click to see the API documentation<a href="/public/API-documentation.md"></a></p>
-
 Login Page
 ==========
 
@@ -36,6 +34,32 @@ Profile Page
 ============
 
 <img src="/readme-images/profile-page.png" alt="screenshot of profile page"/>
+
+
+API Methods:
+============
+
+GET /users
+==========
+
+This method exposes all BookGenie users, their basic information and their libraries.
+
+
+Authentication
+--------------
+
+This method requires authentication.
+
+GET /:id
+========
+
+This method returns a specified user by their Mongoose-generated id. Used when exposing the books in a user's library, or returning a user's information card when said user has the book that was searched for in their library.
+
+
+Authentication
+--------------
+
+This method requires authentication.
 
 
 
