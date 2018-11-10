@@ -25,7 +25,7 @@ Technology used
 	<li>CSS </li>
 </ul>
 
-<p>Click to see the documentation</p>
+<p>Click to see the API documentation<a href="/public/API-documentation.md"></a></p>
 
 Login Page
 ==========

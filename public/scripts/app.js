@@ -170,8 +170,8 @@ function renderAllLibraries(users){
 			userLibrary = '<li class="empty-library">This library is empty :(</li>'
 		}
 		return  `
-		<img src="https://image.flaticon.com/icons/svg/29/29302.svg" class="book-stack-icon">
 		<div class="user-library-card">
+			<img src="https://image.flaticon.com/icons/svg/29/29302.svg" class="book-stack-icon">
 			<h2 class="firstName">${user.firstName}</h2>
 			<h3 class="city">${user.city}</h3>
 			<h3 class="zipcode">${user.zipcode}</h3>

@@ -26,7 +26,6 @@ const userSchema = mongoose.Schema({
 });
 
 //represents how the outside world sees our users
-//Note to self: make tests to make sure serialize is working properly
 userSchema.methods.serialize = function() {
   return {
     firstName: this.firstName,

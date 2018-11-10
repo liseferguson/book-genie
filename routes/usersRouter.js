@@ -29,7 +29,6 @@ const createAuthToken = function (user) {
 
 //returns all users to be scrollable, list-style, on one screen
 router.get('/', (req, res) => {
-  //where back end and front end meet
   let title = req.query.title;
 //returns all users who have a specified title that is searched for
 	User.find({$where: "this.library.length > 0"})
@@ -160,7 +159,7 @@ router.post("/", jsonParser, (req, res) => {
       return res.status(400).send(message);
     }
     return User.hashPassword(password);
-    })//END OF USER.FIND
+    })
     .then (hash => {
       return User
       .create({
@@ -256,8 +255,7 @@ router.delete('/:userId/library/:bookId', (req, res) => {
           return res.status(204).end();
         }
         else {
-          //this is here for reason. to avoid making a follow up request for updated user. if want to delete, see note in app.js deleteBookFunction
-          return res.status(417).json("I'm a bad teapot");
+          return res.status(417).json("Error deleting book. Please try again later.");
         }     
     })
 });

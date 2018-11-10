@@ -10,12 +10,6 @@ const { JWT_SECRET, JWT_EXPIRY } = require('../config');
 //router helps set up what endpoints are, routes request for incoming HTTP requests 
 const router = express.Router();
 
-
-
-// const jwtAuth = require('./jwt-auth');
-
-// const localAuth = passport.authenticate('local', {session: false});
-
 //create a signed jwt
 const createAuthToken = function (user) {
   return jwt.sign({ user }, JWT_SECRET, {

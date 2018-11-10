@@ -1,17 +1,23 @@
 
-GET users/
+API Methods:
+============
+
+GET /users
 ==========
 
-This API returns all users and their respective libraries.
-----------------------------------------------------------
+This method exposes all BookGenie users, their basic information and their libraries.
 
-Parameters
-----------
 
-<ul>
-	<li></li>
-	<li></li>
-</ul>
+Authentication
+--------------
+
+This method requires authentication.
+
+GET /:id
+========
+
+This method returns a specified user by their Mongoose-generated id. Used when exposing the books in a user's library, or returning a user's information card when said user has the book that was searched for in their library.
+
 
 Authentication
 --------------
