@@ -368,7 +368,7 @@ fieldset {
 */
 
 @media screen and (max-width: 415px) {
-  .header, .signInForm, .signUpForm, .myProfile, .user-library-card, .updateProfileForm, .all-libraries-container {
+  .header, .signInForm, .signUpForm, .myProfile, .user-library-card, .updateProfileForm, .all-libraries-container, .welcomePage {
     width: 100%;
   }
 
@@ -380,7 +380,8 @@ fieldset {
   }
 
   #userInfo label {
-    margin-right: 40px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

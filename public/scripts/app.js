@@ -182,6 +182,7 @@ function renderAllLibraries(users){
 	})
 $('.showAllLibraries').show();
 $('.all-libraries-container').html(libraryCard); 
+$('.all-libraries-container').show();
 $('.myProfile').hide();
 	}
 }
