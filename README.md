@@ -11,6 +11,11 @@ Users can also choose to browse the libraries of all other users in their area. 
 
 The BookGenie logo at the top of the page is a clickable link that will redirect a user who is logged in back to the welcome page. If the user is not logged in (but is on the Sign Up page) and clicks the logo, they will be taken back to the login page.
 
+Motivation
+----------
+
+Books are expensive, and the library doesn't alwyays have what I want to read readily available. Sometimes on my neighborhood's Facebook page, people ask if their neighbors have a certain title that can be borrowed, and most of the time somebody has it. I know I would use an app that focused solely on book trade, as would my bibliophile neighbors. 
+
 Technology used
 ===============
 

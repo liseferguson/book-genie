@@ -180,6 +180,11 @@ label.required::before {
   font-size: 24px;
 }
 
+.user-library-card a {
+  text-decoration: none;
+  color: black;
+}
+
 .all-libraries-container {
   overflow-y: auto;
   height: 900px;
@@ -361,9 +366,20 @@ fieldset {
 /* mobile-first design. When the screen is a 400px or smaller, apply following styles
 */
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 415px) {
   .header, .signInForm, .signUpForm, .myProfile, .user-library-card, .updateProfileForm, .all-libraries-container {
     width: 100%;
+  }
+
+  .signUpForm img {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  #userInfo label {
+    margin-right: 40px;
   }
 }
 
