@@ -330,7 +330,9 @@ label.required::before {
   background-color: black;
   padding: 5px;
   border-radius: 5px;
-  max-width: 350px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .credit-icons a {
@@ -339,10 +341,12 @@ label.required::before {
 
 a:link {
     text-decoration: none;
+    color: white;
 }
 
 a:visited {
     text-decoration: none;
+    color: white;
 }
 
 a:hover {
@@ -358,7 +362,7 @@ fieldset {
 */
 
 @media screen and (max-width: 400px) {
-  .header, .signInForm, .signUpForm, .myProfile, .user-library-card, .updateProfileForm {
+  .header, .signInForm, .signUpForm, .myProfile, .user-library-card, .updateProfileForm, .all-libraries-container {
     width: 100%;
   }
 }
