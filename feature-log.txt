@@ -1,4 +1,6 @@
 Current bugs: 
+Make responsive- divs to resize to take be portrait instead of landscape in phone
+add max-height to background pic
 Don't add books that are already in library
 
 
