@@ -33,12 +33,23 @@ Technology used
 Login Page
 ==========
 
-<img src="/readme-images/home-screen.png" alt="screenshot of login screen"/>
+User can login or sign up for an account here.
+
+<img src="/readme-images/landing-page.png" alt="screenshot of login screen"/>
 
 Profile Page
 ============
 
-<img src="/readme-images/profile-page.png" alt="screenshot of profile page"/>
+User can add or delete books in their library, review their contact information, and update it as needed.
+
+<img src="/readme-images/my-profile.png" alt="screenshot of profile page"/>
+
+Browse All Neighbor Libraries Page
+============
+
+User can scroll through all libraries, and can scroll through the lists of books within each neighbor's lirbary as well.
+
+<img src="/readme-images/browse-all-libs.png" alt="screenshot of the browse all libraries page"/>
 
 
 API Methods:
