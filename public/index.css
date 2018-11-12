@@ -328,7 +328,7 @@ label.required::before {
   background-color: black; opacity:0.6;
   font-size: 50px;
   text-align: center;
-  /* padding: 25px; */
+  padding: 20px;
 }
 
 .credits-icons {
@@ -341,21 +341,18 @@ label.required::before {
   margin-right: auto;
 }
 
-.credit-icons a {
-  color: white;
-}
 
-a:link {
+.credit-icons a:link {
     text-decoration: none;
     color: white;
 }
 
-a:visited {
+.credit-icons a:visited {
     text-decoration: none;
     color: white;
 }
 
-a:hover {
+.credit-icons a:hover {
     color: fuchsia;
     font-weight: bolder;
 }
@@ -373,6 +370,7 @@ fieldset {
   }
 
   .signUpForm img {
+    max-width: 100%
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
@@ -380,6 +378,13 @@ fieldset {
   }
 
   #userInfo label {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #userInfo input {
+    display: inline-block;
     margin-left: auto;
     margin-right: auto;
   }
