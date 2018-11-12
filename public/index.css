@@ -4,7 +4,7 @@
 }
 
 body {
-  background-image: url("https://i.imgur.com/4Lb8CCl.png");
+  background-image: url("/pdxhighresmap.jpg");
   background-size: cover;
   padding-top: 50px;
   padding-left: 30px;
@@ -319,6 +319,7 @@ label.required::before {
 .login-error-message {
   width: 100%;
   color: red;
+  background-color: black; opacity:0.6;
   font-size: 50px;
   text-align: center;
   /* padding: 25px; */
