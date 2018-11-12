@@ -325,7 +325,7 @@ label.required::before {
 .login-error-message {
   width: 100%;
   color: red;
-  background-color: black; opacity:0.6;
+  background-color: black; opacity:0.3;
   font-size: 50px;
   text-align: center;
   padding: 20px;
@@ -342,22 +342,22 @@ label.required::before {
 }
 
 
-.credit-icons a:link {
+.credits-icons a:link {
     text-decoration: none;
     color: white;
 }
 
-.credit-icons a:active {
+.credits-icons a:active {
     text-decoration: none;
     color: white;
 }
 
-.credit-icons a:visited {
+.credits-icons a:visited {
     text-decoration: none;
     color: white;
 }
 
-.credit-icons a:hover {
+.credits-icons a:hover {
   text-decoration: none;
     color: fuchsia;
     font-weight: bolder;
@@ -371,7 +371,7 @@ fieldset {
 */
 
 @media screen and (max-width: 415px) {
-  .header, .signInForm, .signUpForm, .myProfile, .user-library-card, .updateProfileForm, .all-libraries-container, .welcomePage {
+  .header, .signInForm, .signUpForm, .myProfile, .user-library-card, .updateProfileForm, .all-libraries-container, .welcomePage, .userLibrary {
     width: 100%;
   }
 
