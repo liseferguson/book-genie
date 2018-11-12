@@ -347,12 +347,18 @@ label.required::before {
     color: white;
 }
 
+.credit-icons a:active {
+    text-decoration: none;
+    color: white;
+}
+
 .credit-icons a:visited {
     text-decoration: none;
     color: white;
 }
 
 .credit-icons a:hover {
+  text-decoration: none;
     color: fuchsia;
     font-weight: bolder;
 }
@@ -370,7 +376,7 @@ fieldset {
   }
 
   .signUpForm img {
-    max-width: 100%
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
