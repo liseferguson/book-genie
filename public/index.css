@@ -4,7 +4,7 @@
 }
 
 body {
-  background-image: url("/pdxhighresmap.jpg");
+  background-image: url("/pdxhighresmapcrop.jpg");
   background-size: cover;
   padding-top: 50px;
   padding-left: 30px;
@@ -325,6 +325,35 @@ label.required::before {
   /* padding: 25px; */
 }
 
+.credits-icons {
+  color: white;
+  background-color: black; opacity:0.6;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    color: pink;
+    font-weight: bolder;
+}
+
 fieldset {
   border: none;
 }
+
+/* mobile-first design. When the screen is a 400px or smaller, apply following styles
+*/
+
+@media screen and (max-width: 400px) {
+  main {
+    width: 100%;
+  }
+}
+
+
