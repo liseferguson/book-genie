@@ -186,6 +186,7 @@ label.required::before {
 }
 
 .all-libraries-container {
+  display: none;
   overflow-y: auto;
   height: 900px;
   width: 750px;
