@@ -185,6 +185,11 @@ label.required::before {
   color: black;
 }
 
+.user-library-card a:hover {
+  text-decoration: none;
+  color: fuchsia;
+}
+
 .all-libraries-container {
   display: none;
   overflow-y: auto;
@@ -359,8 +364,7 @@ label.required::before {
 
 .credits-icons a:hover {
   text-decoration: none;
-    color: fuchsia;
-    font-weight: bolder;
+  color: fuchsia;
 }
 
 fieldset {
