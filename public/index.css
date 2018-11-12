@@ -371,8 +371,14 @@ fieldset {
   border: none;
 }
 
-/* mobile-first design. When the screen is a 400px or smaller, apply following styles
+/* mobile-first design. When the screen is at ___px or smaller, apply following styles
 */
+
+@media screen and (max-width: 325px) {
+  .App-title img{
+    height: 25px;
+  }
+}
 
 @media screen and (max-width: 415px) {
   .header, .signInForm, .signUpForm, .myProfile, .user-library-card, .updateProfileForm, .all-libraries-container, .welcomePage, .userLibrary {
@@ -394,6 +400,18 @@ fieldset {
   }
 
   #userInfo input {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #userInfoUpdate label {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #userInfoUpdate input {
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
