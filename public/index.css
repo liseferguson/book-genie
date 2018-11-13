@@ -31,11 +31,11 @@ button:hover {
   cursor: pointer;
 }
 
-img {
+.contact-links img {
   height: 30px;
 }
 
-img:hover {
+.contact-links img:hover {
   padding: 2px;
   background-color: fuchsia;
   border-radius: 4px;
@@ -98,6 +98,7 @@ img:hover {
   border: 1px solid;
   box-shadow: 5px 5px;
   padding: 5px;
+  cursor: pointer;
 }
 
 
@@ -454,6 +455,12 @@ fieldset {
 
   .welcome-back-message{
     font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header, .signInForm, .welcomePage, .myProfile, .user-library-card, .signUpForm {
+    margin-right: 40px;
   }
 }
 
