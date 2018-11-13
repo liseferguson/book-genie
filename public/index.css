@@ -162,6 +162,7 @@ label.required::before {
   width: 100%;
   color: blue;
   text-align: center;
+  font-size: 50px;
 }
 
 .user-library-card {
@@ -396,8 +397,7 @@ fieldset {
 
   #userInfo label {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
   }
 
   #userInfo input {
@@ -408,8 +408,7 @@ fieldset {
 
   #userInfoUpdate label {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
   }
 
   #userInfoUpdate input {
