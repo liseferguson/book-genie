@@ -463,7 +463,11 @@ fieldset {
   }
 }
 
-@media screen and (max-width: 480px) {
+
+/* Manually add a right margin to the major divs between 416-780px
+*/
+
+@media screen and (min-width: 416px) {
   .header, .signInForm, .welcomePage, .myProfile, .user-library-card, .signUpForm {
     margin-right: 40px;
   }
