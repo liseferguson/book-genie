@@ -175,7 +175,7 @@ function renderAllLibraries(users){
 			<h2 class="firstName">${user.firstName}</h2>
 			<h3 class="city">${user.city}</h3>
 			<h3 class="zipcode">${user.zipcode}</h3>
-			<a href="mailto:${user.email}?Subject=Book%20trade%20request%20from%20your%20neighbor%20on%20Book%20Genie" target="_top">Email ${user.firstName}</a>
+			<a href="mailto:${user.email}?Subject=Book%20trade%20request%20from%20your%20neighbor%20on%20Book%20Genie" target="_blank">Email ${user.firstName}</a>
 			<h3 class="userLibraryTitle"><span>${user.firstName}'s library</span></h3>
 				<ul class="userLibrary">${userLibrary}</ul>
 		</div>   `

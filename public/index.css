@@ -35,6 +35,12 @@ img {
   height: 30px;
 }
 
+img:hover {
+  padding: 2px;
+  background-color: fuchsia;
+  border-radius: 4px;
+}
+
 .book-genie-logo {
   text-decoration: none;
   color: black;
