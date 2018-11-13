@@ -31,6 +31,10 @@ button:hover {
   cursor: pointer;
 }
 
+img {
+  height: 30px;
+}
+
 .book-genie-logo {
   text-decoration: none;
   color: black;
@@ -339,7 +343,7 @@ label.required::before {
   border: 3px dashed red;
 }
 
-.credits-icons {
+.credits-icons, .credits-background, .credits-author {
   color: white;
   background-color: black;
   padding: 5px;
