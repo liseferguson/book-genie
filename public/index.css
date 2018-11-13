@@ -395,23 +395,13 @@ fieldset {
     margin-top: 20px;
   }
 
-  #userInfo label {
-    display: block;
+  label {
+    display: inline-block;
     text-align: center;
+    margin: 0;
   }
 
-  #userInfo input {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  #userInfoUpdate label {
-    display: block;
-    text-align: center;
-  }
-
-  #userInfoUpdate input {
+  input {
     display: block;
     margin-left: auto;
     margin-right: auto;
