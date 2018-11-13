@@ -76,6 +76,7 @@ img:hover {
   border: 1px solid;
   box-shadow: 5px 5px;
   padding: 5px;
+  cursor: pointer;
 }
 
 .title-search-button {
@@ -398,6 +399,11 @@ fieldset {
     width: 100%;
   }
 
+  .title-search-button {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
   .signUpForm img {
     max-width: 100%;
     margin-left: auto;
@@ -447,7 +453,7 @@ fieldset {
   }
 
   .welcome-back-message{
-    max-width: 100%;
+    font-size: 30px;
   }
 }
 
