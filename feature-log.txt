@@ -1,6 +1,7 @@
 Current bugs: 
 Make signUp form fields and labels either on same line or stacked but connected
 Don't add books that are already in library
+make sure margins are symmetrical on smaller screens
 
 
 To-dos:

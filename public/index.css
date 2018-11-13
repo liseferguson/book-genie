@@ -330,10 +330,11 @@ label.required::before {
 .login-error-message {
   width: 100%;
   color: red;
-  background-color: black; opacity:0.3;
+  background-color: black;
   font-size: 50px;
   text-align: center;
   padding: 20px;
+  border: 3px dashed red;
 }
 
 .credits-icons {
@@ -394,25 +395,25 @@ fieldset {
   }
 
   #userInfo label {
-    display: inline-block;
+    display: block;
     margin-left: auto;
     margin-right: auto;
   }
 
   #userInfo input {
-    display: inline-block;
+    display: block;
     margin-left: auto;
     margin-right: auto;
   }
 
   #userInfoUpdate label {
-    display: inline-block;
+    display: block;
     margin-left: auto;
     margin-right: auto;
   }
 
   #userInfoUpdate input {
-    display: inline-block;
+    display: block;
     margin-left: auto;
     margin-right: auto;
   }
