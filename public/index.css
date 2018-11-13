@@ -351,6 +351,11 @@ label.required::before {
   border: 3px dashed red;
 }
 
+.credits {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .credits-icons, .credits-background, .credits-author {
   color: white;
   background-color: black;
