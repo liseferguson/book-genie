@@ -143,8 +143,6 @@ button:hover {
 
 .signUpForm img {
   display: flex;
-  margin-right: 40px;
-  margin-top: 70px;
 }
 
 label.required::before {
@@ -476,13 +474,20 @@ fieldset {
   }
 }
 
-
-@media screen and (max-width: 800px) {
+/* at 800px and smaller, position image on top of form*/
+@media screen and (max-width: 799px) {
 
   .signUpForm img {
     margin-right: auto;
     margin-left: auto;
     display: block;
+    max-width: 100%;
+  }
+/* At 800px and wider, float the image to the right of the form*/
+  @media screen and (min-width: 800px) {
+
+  .signUpForm img {
+    float: left;
     max-width: 100%;
   }
 }
