@@ -140,11 +140,11 @@ button:hover {
   margin-left: 100px;
   margin-bottom: 10px;
 }
-/*
+
 .signUpForm img {
-  float: right;
+  margin-botton: 10px;
 }
-*/
+
 label.required::before {
   content: '*';
   margin-right: 4px;
@@ -402,7 +402,7 @@ fieldset {
   border: none;
 }
 
-/* mobile-first design. When the screen is at ___px or smaller, apply following styles
+/* mobile-first design. When the screen is at 325px or smaller, reduce size of book icons
 */
 
 @media screen and (max-width: 325px) {
@@ -410,6 +410,8 @@ fieldset {
     height: 25px;
   }
 }
+
+/* Small screens: make all major divs fit the width of the screen to make easier to read */
 
 @media screen and (max-width: 415px) {
   .header, .signInForm, .signUpForm, .myProfile, .user-library-card, .updateProfileForm, .all-libraries-container, .welcomePage, .userLibrary {
@@ -474,23 +476,54 @@ fieldset {
   }
 }
 
-/* at 800px and smaller, position image on top of form*/
-/*
-@media screen and (max-width: 799px) {
+/* At screen widths of 799px and smaller, position image on top of form and center form elements */
 
-  .signUpForm img {
-    margin-right: auto;
-    margin-left: auto;
+@media screen and (max-width: 799px) {
+  
+  #userCredentials label {
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+  }
+
+  #userCredentials input {
     display: block;
+    margin-left: auto;
+    margin-right: auto;
     max-width: 100%;
   }
-/*
+
+
+  #userInfo label {
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+  }
+
+  #userInfo input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+  }
+
+  #userInfoUpdate label {
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+  }
+
+  #userInfoUpdate input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+  }
+
 /* At 800px and wider, float the image to the right of the form*/
   @media screen and (min-width: 800px) {
-
   .signUpForm img {
     float: left;
-    /*max-width: 100%;*/
   }
 }
 
