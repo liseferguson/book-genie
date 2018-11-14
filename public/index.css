@@ -82,6 +82,10 @@ button:hover {
   cursor: pointer;
 }
 
+.existing-user:hover {
+  background-color: fuchsia;
+}
+
 .title-search-button {
   background-color: rgb(238, 174, 121);
   border-radius: 5px;
@@ -104,7 +108,9 @@ button:hover {
   cursor: pointer;
 }
 
-
+.new-user:hover {
+  background-color: fuchsia;
+}
 
 .signUpForm, .welcomePage, .searchResultsPage, .browseAllLibraries, .bookSearchForm, .updateProfileForm {
   display: none;
@@ -422,6 +428,7 @@ fieldset {
     margin-right: auto;
     margin-bottom: 20px;
     margin-top: 20px;
+    max-width: 100%;
   }
 
   #userCredentials label {
