@@ -422,15 +422,11 @@ fieldset {
     margin-top: 5px;
     margin-bottom: 10px;
 }
-/*
+
   .signUpForm img {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
-    margin-top: 20px;
     max-width: 100%;
   }
-*/
+
   #userCredentials label {
     display: inline-block;
     text-align: center;
