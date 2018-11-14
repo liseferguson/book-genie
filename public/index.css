@@ -140,11 +140,11 @@ button:hover {
   margin-left: 100px;
   margin-bottom: 10px;
 }
-
+/*
 .signUpForm img {
-  display: flex;
+  float: right;
 }
-
+*/
 label.required::before {
   content: '*';
   margin-right: 4px;
@@ -420,7 +420,7 @@ fieldset {
     margin-top: 5px;
     margin-bottom: 10px;
 }
-
+/*
   .signUpForm img {
     margin-left: auto;
     margin-right: auto;
@@ -428,7 +428,7 @@ fieldset {
     margin-top: 20px;
     max-width: 100%;
   }
-
+*/
   #userCredentials label {
     display: inline-block;
     text-align: center;
@@ -475,6 +475,7 @@ fieldset {
 }
 
 /* at 800px and smaller, position image on top of form*/
+/*
 @media screen and (max-width: 799px) {
 
   .signUpForm img {
@@ -483,12 +484,13 @@ fieldset {
     display: block;
     max-width: 100%;
   }
+/*
 /* At 800px and wider, float the image to the right of the form*/
   @media screen and (min-width: 800px) {
 
   .signUpForm img {
     float: left;
-    max-width: 100%;
+    /*max-width: 100%;*/
   }
 }
 
