@@ -478,7 +478,16 @@ fieldset {
 
 
 @media screen and (max-width: 800px) {
+
+  .signUpForm {
+    position: relative;
+  }
+
   .signUpForm img {
+    position: absolute;
+    top:0;
+    margin-right: auto;
+    margin-left: auto;
     display: block;
     max-width: 100%;
   }
