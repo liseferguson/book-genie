@@ -521,6 +521,7 @@ fieldset {
   @media screen and (min-width: 800px) {
   .signUpForm img {
     float: right;
+    margin-right: 40px;
   }
 }
 
