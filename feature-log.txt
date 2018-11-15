@@ -1,22 +1,17 @@
 Current bugs: 
-Make signUp form fields and labels either on same line or stacked but connected
-Don't add books that are already in library
-make sure margins are symmetrical on smaller screens
 
 
 To-dos:
-make sure email links connect to email interface
+scroll to new elements and messages on show()
 change name of heroku link, update in git remote and config file
 
 
 Wish list features:
 Add a location check: "Sorry, there are currently no other BookGenie users in your area" if a user's city has no other users. Ultimately will only show other users if they are in the same city as the user.
 Add a "back" button to "edit profile" page
-Only show libraries that have books in them in browser
 Scroll to end of library when new book has been added
-Scroll to top of page on reload (currently goes to bottom where there is nothing)
 Make so user can't add same book twice
-Make search term not case-sensitive
+Make search term not case-sensitive or punctutation-sensititve
 Add spell-check to book search forms
 Add auto-fill to book search forms
 Add author and genre information

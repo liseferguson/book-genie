@@ -160,7 +160,7 @@ function renderAllLibraries(users){
 	if(users.length < 1) {
     $('.all-libraries-container').html("");
     const noDataMessage = 'Sorry, nobody has that book. Please try another search.';
-    $('<p>').appendTo('.all-libraries-container').addClass('login-error-message').html(noDataMessage).scrollIntoView();
+    $('<p>').appendTo('.all-libraries-container').addClass('login-error-message').html(noDataMessage);
     $('.myProfile').hide();
    } else {
 		let libraryCard = users.map(user => {
