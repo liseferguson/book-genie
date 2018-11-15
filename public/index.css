@@ -515,6 +515,7 @@ fieldset {
     margin-right: auto;
     max-width: 100%;
   }
+}
 
 /* At 800px and wider, float the image to the right of the form*/
   @media screen and (min-width: 800px) {
