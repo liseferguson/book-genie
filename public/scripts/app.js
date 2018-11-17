@@ -155,36 +155,36 @@ function loadAllLibraries() {
 		contentType: 'application/json'
 	});
 };
+// I think the big is here
 //data is passed from the API call to the function below, where map is applied to users
 function renderAllLibraries(users){
 	if(users.length < 1) {
     $('.all-libraries-container').html("");
     const noDataMessage = 'Sorry, nobody has that book. Please try another search.';
     $('<p>').appendTo('.all-libraries-container').addClass('login-error-message').html(noDataMessage);
-    $('.myProfile').hide();
    } else {
 		let libraryCard = users.map(user => {
-//joining array of strings (books) in library that are <li> items so that can interpolate it
-		let userLibrary = renderUserLibrary(user.library).join("");
-		if (userLibrary == ""){
-			userLibrary = '<li class="empty-library">This library is empty :(</li>'
-		}
-		return  `
-		<div class="user-library-card">
-			<img src="https://image.flaticon.com/icons/svg/29/29302.svg" class="book-stack-icon">
-			<h2 class="firstName">${user.firstName}</h2>
-			<h3 class="city">${user.city}</h3>
-			<h3 class="zipcode">${user.zipcode}</h3>
-			<a href="mailto:${user.email}?Subject=Book%20trade%20request%20from%20your%20neighbor%20on%20Book%20Genie" target="_blank">Email ${user.firstName}</a>
-			<h3 class="userLibraryTitle"><span>${user.firstName}'s library</span></h3>
-				<ul class="userLibrary">${userLibrary}</ul>
-		</div>   `
-	})
-$('.showAllLibraries').show();
-$('.all-libraries-container').html(libraryCard); 
-$('.all-libraries-container').show();
-$('.myProfile').hide();
+			//joining array of strings (books) in library that are <li> items so that can interpolate it
+			let userLibrary = renderUserLibrary(user.library).join("");
+			if (userLibrary == ""){
+				userLibrary = '<li class="empty-library">This library is empty :(</li>'
+			}
+			return  `
+			<div class="user-library-card">
+				<img src="https://image.flaticon.com/icons/svg/29/29302.svg" class="book-stack-icon">
+				<h2 class="firstName">${user.firstName}</h2>
+				<h3 class="city">${user.city}</h3>
+				<h3 class="zipcode">${user.zipcode}</h3>
+				<a href="mailto:${user.email}?Subject=Book%20trade%20request%20from%20your%20neighbor%20on%20Book%20Genie" target="_blank">Email ${user.firstName}</a>
+				<h3 class="userLibraryTitle"><span>${user.firstName}'s library</span></h3>
+					<ul class="userLibrary">${userLibrary}</ul>
+			</div>   `
+		})
+		$('.all-libraries-container').html(libraryCard);
 	}
+	$('.showAllLibraries').show();
+	$('.all-libraries-container').show();
+	$('.myProfile').hide();
 }
 
 //if no value is passed for userOwnsLibrary, then will set to false (to use on myProfile for updating books)
